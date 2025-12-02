@@ -95,7 +95,7 @@ class Solution
         }
         else if (rightSubArrMaxSum > leftSubArrMaxSum && rightSubArrMaxSum >= mergeSubArrSum)
         {
-            subArrIndex = left.Length + gapLength + rightSubArrIndex;
+            subArrIndex = left.Length + rightSubArrIndex;
             subArrLen = rightSubArrLen;
         }
         else
@@ -146,7 +146,11 @@ class Program
             //result = solution.TestCase(nums, 2);
             //if (!result) break;
 
+ 
+            result = solution.TestCase(new int[] { 0, -3, -2, -3, -2, 2, -3, 0, 1, -1 }, 2);
+            if (!result) break;
 
+            break;
 
             result = solution.TestCase(new int[] { 5, 4, -1, 7, 8 }, 23);
             if (!result) break;
