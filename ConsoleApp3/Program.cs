@@ -78,7 +78,7 @@ class Solution
         for (int i = leftSubArrIndex; i < leftSubArrLen; i++ )
             leftSubArrMaxSum += left[i];
 
-        for (int i = rightSubArrMaxSum; i < rightSubArrLen; i++)
+        for (int i = rightSubArrIndex; i < rightSubArrLen; i++)
             rightSubArrMaxSum += right[i];
 
         int gapLength = left.Length - leftSubArrLen + rightSubArrIndex;
@@ -95,7 +95,7 @@ class Solution
         }
         else if (rightSubArrMaxSum > leftSubArrMaxSum && rightSubArrMaxSum >= mergeSubArrSum)
         {
-            subArrIndex = leftSubArrLen + gapLength + rightSubArrIndex;
+            subArrIndex = left.Length + gapLength + rightSubArrIndex;
             subArrLen = rightSubArrLen;
         }
         else
@@ -129,8 +129,6 @@ class Solution
     }
 }
 
-
-
 class Program
 {
 
@@ -148,6 +146,12 @@ class Program
             //result = solution.TestCase(nums, 2);
             //if (!result) break;
 
+
+
+            result = solution.TestCase(new int[] { 5, 4, -1, 7, 8 }, 23);
+            if (!result) break;
+
+    
             result = solution.TestCase(new int[] { 0, -3, -2, -3, -2, 2, -3, 0, 1, -1 }, 2);
             if (!result) break;
 
