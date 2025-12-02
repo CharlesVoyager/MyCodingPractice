@@ -75,10 +75,10 @@ class Solution
         int leftSubArrMaxSum = 0;
         int rightSubArrMaxSum = 0;
 
-        for (int i = leftSubArrIndex; i < leftSubArrLen; i++ )
+        for (int i = leftSubArrIndex; i < leftSubArrIndex + leftSubArrLen; i++ )
             leftSubArrMaxSum += left[i];
 
-        for (int i = rightSubArrIndex; i < rightSubArrLen; i++)
+        for (int i = rightSubArrIndex; i < rightSubArrIndex + rightSubArrLen; i++)
             rightSubArrMaxSum += right[i];
 
         int gapLength = left.Length - leftSubArrLen + rightSubArrIndex;
@@ -88,12 +88,12 @@ class Solution
         for (int i = leftSubArrIndex; i < mergeSubArrLen; i++)
             mergeSubArrSum += arr[i];
 
-        if (leftSubArrMaxSum > rightSubArrMaxSum && leftSubArrMaxSum >= mergeSubArrSum)
+        if (leftSubArrMaxSum >= rightSubArrMaxSum && leftSubArrMaxSum >= mergeSubArrSum)
         {
             subArrIndex = leftSubArrIndex;
             subArrLen = rightSubArrLen;
         }
-        else if (rightSubArrMaxSum > leftSubArrMaxSum && rightSubArrMaxSum >= mergeSubArrSum)
+        else if (rightSubArrMaxSum >= leftSubArrMaxSum && rightSubArrMaxSum >= mergeSubArrSum)
         {
             subArrIndex = left.Length + rightSubArrIndex;
             subArrLen = rightSubArrLen;
@@ -113,7 +113,7 @@ class Solution
 
         MaxSubArray(nums, out subArrIndex, out subArrLen);
 
-        for (int i = 0; i < subArrLen; i++)
+        for (int i = subArrIndex; i < subArrIndex + subArrLen; i++)
             maxSum += nums[i];
 
         Console.Write("Nums:");
@@ -146,16 +146,12 @@ class Program
             //result = solution.TestCase(nums, 2);
             //if (!result) break;
 
- 
             result = solution.TestCase(new int[] { 0, -3, -2, -3, -2, 2, -3, 0, 1, -1 }, 2);
             if (!result) break;
-
-            break;
 
             result = solution.TestCase(new int[] { 5, 4, -1, 7, 8 }, 23);
             if (!result) break;
 
-    
             result = solution.TestCase(new int[] { 0, -3, -2, -3, -2, 2, -3, 0, 1, -1 }, 2);
             if (!result) break;
 
