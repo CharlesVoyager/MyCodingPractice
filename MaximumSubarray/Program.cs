@@ -76,7 +76,7 @@ class Solution
         // Fix endIndex
         // startIndex: leftSubArrIndex
         // endIndex: leftSubArrIndex + mergeSubArrLen - 1
-        for (int i = leftSubArrIndex + leftSubArrLen; i < leftSubArrIndex + gapLength; i++)
+        for (int i = leftSubArrIndex + leftSubArrLen; i < leftSubArrIndex + leftSubArrLen + gapLength; i++)
         {
             int tempSum = 0;
             for (int j = i;  j < leftSubArrIndex + mergeSubArrLen; j++)
