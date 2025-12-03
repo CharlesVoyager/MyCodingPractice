@@ -1,29 +1,48 @@
 ﻿using Microsoft.VisualBasic;
+using System.Globalization;
 
 public class Solution
 {
+    // 3381. Maximum subarray sum with length divisible by K.
     public long MaxSubarraySum(int[] nums, int k)
     {
-        // First subarray
         long maxSoFar = 0;
         long currentMax = 0;
-        for  (int i = 0; i < k; i++)
-        {
-            maxSoFar += nums[i];
-            currentMax += nums[i];
-        }
-  
-        for (int i = 1; i < nums.Length / k; i++)
-        {
-            long chunk = 0;
-            for (int j = 0; j< k; j++)
-                chunk += nums[i*k+j];
 
-            currentMax = Math.Max(chunk, currentMax + chunk);
+        int shiftPos = 0;
+        int arrayLength = nums.Length;
 
-            maxSoFar = Math.Max(maxSoFar, currentMax);
+        long maxSubarray = long.MinValue;
+
+        for (int m = 0; m < k; m++)
+        {
+            shiftPos = m;
+            arrayLength = nums.Length - m;
+
+            if ( arrayLength >= k)
+            {
+                maxSoFar = 0;
+                currentMax = 0;
+
+                for (int i = 0; i < k; i++)       // First subarray
+                {
+                    maxSoFar += nums[i + shiftPos];
+                    currentMax += nums[i + shiftPos];
+                }
+     
+                for (int i = 1; i < arrayLength / k; i++)
+                {
+                    long chunk = 0;
+                    for (int j = 0; j< k; j++)
+                        chunk += nums[i*k+j + shiftPos];
+
+                    currentMax = Math.Max(chunk, currentMax + chunk);
+                    maxSoFar = Math.Max(maxSoFar, currentMax);
+                }
+            }
+            maxSubarray = Math.Max(maxSubarray, maxSoFar);
         }
-        return maxSoFar;
+        return maxSubarray;
     }
 
     public bool TestCase(int[] nums, int k, int expected)
@@ -47,34 +66,27 @@ class Program
 {
     public static void Main()
     {
-        //string fileContent = File.ReadAllText("TestCaseBigData.txt");
-        //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-        //int[] nums = stringNumbers.Select(int.Parse).ToArray();
-
-        //result = test.TestCase(nums, 2, 536);
-        //if (result == false) break;
-
         Solution test = new Solution();
         bool result;
 
         while (true)
         {
+            string fileContent = File.ReadAllText("TestCase657.txt");   // TestCaseBigData.txt
+            string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            int[] nums = stringNumbers.Select(int.Parse).ToArray();
+
+            result = test.TestCase(nums, 100000, 536);
+            if (result == false) break;
+
+            result = test.TestCase(new int[] { -41, -40, 1, -28, -14 }, 3, -41);
+            if (result == false) break;
+
             result = test.TestCase(new int[] { -47, 24, -18, -4, -23 }, 3, 2);
             if (result == false) break;
 
 
-
-            // My test
-            result = test.TestCase(new int[] { -47, 24, 18, 42, -23 }, 2, 60);
+            result = test.TestCase(new int[] { -1747, 1443, 1776, 767, -697, -1713, -18, 439, 1680 }, 2, 3677);
             if (result == false) break;
-
-         
-            result = test.TestCase(new int[] { -47, 24, -18, -4, -23 }, 3, 2);
-            if (result == false) break;
-
-
-            //result = test.TestCase(new int[] { -1747, 1443, 1776, 767, -697, -1713, -18, 439, 1680 }, 2, 3677);
-            //if (result == false) break;
 
 
             result = test.TestCase(new int[] { 44, 24, -37, 96, -18, -6, -48 }, 2, 127);
