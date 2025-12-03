@@ -1,35 +1,27 @@
-﻿public class Solution
+﻿using Microsoft.VisualBasic;
+
+public class Solution
 {
     public long MaxSubarraySum(int[] nums, int k)
     {
-        long maxSoFar = nums[0];
-        long currentMax = nums[0];
-
-        int currentStartIndex = 0;
-        int currentLength = 1;
-
-        for (int i = 1; i < nums.Length; i++)
+        // First subarray
+        long maxSoFar = 0;
+        long currentMax = 0;
+        for  (int i = 0; i < k; i++)
         {
-            //currentMax = Math.Max(nums[i], currentMax + nums[i]);
+            maxSoFar += nums[i];
+            currentMax += nums[i];
+        }
+  
+        for (int i = 1; i < nums.Length / k; i++)
+        {
+            long chunk = 0;
+            for (int j = 0; j< k; j++)
+                chunk += nums[i*k+j];
 
-            if (nums[i] > currentMax + nums[i])
-            {
-                currentMax = nums[i];
-                currentStartIndex = i;
-                currentLength = 1;
-            }
-            else
-            {
-                currentMax = currentMax + nums[i];
-            }
+            currentMax = Math.Max(chunk, currentMax + chunk);
 
-            //maxSoFar = Math.Max(maxSoFar, currentMax);
-
-            if (currentMax > maxSoFar)
-            {
-                maxSoFar = currentMax;
-                currentLength++;
-            }
+            maxSoFar = Math.Max(maxSoFar, currentMax);
         }
         return maxSoFar;
     }
@@ -71,8 +63,18 @@ class Program
             if (result == false) break;
 
 
-            result = test.TestCase(new int[] { -1747, 1443, 1776, 767, -697, -1713, -18, 439, 1680 }, 2, 3677);
+
+            // My test
+            result = test.TestCase(new int[] { -47, 24, 18, 42, -23 }, 2, 60);
             if (result == false) break;
+
+         
+            result = test.TestCase(new int[] { -47, 24, -18, -4, -23 }, 3, 2);
+            if (result == false) break;
+
+
+            //result = test.TestCase(new int[] { -1747, 1443, 1776, 767, -697, -1713, -18, 439, 1680 }, 2, 3677);
+            //if (result == false) break;
 
 
             result = test.TestCase(new int[] { 44, 24, -37, 96, -18, -6, -48 }, 2, 127);
