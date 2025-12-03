@@ -91,7 +91,7 @@ class Solution
         if (leftSubArrMaxSum >= rightSubArrMaxSum && leftSubArrMaxSum >= mergeSubArrSum)
         {
             subArrIndex = leftSubArrIndex;
-            subArrLen = rightSubArrLen;
+            subArrLen = leftSubArrLen;
         }
         else if (rightSubArrMaxSum >= leftSubArrMaxSum && rightSubArrMaxSum >= mergeSubArrSum)
         {
@@ -139,6 +139,10 @@ class Program
 
         while (true)
         {
+            //0   .. ......4..................9
+            result = solution.TestCase(new int[] { 7, -2, 6, 2, 4, -5, -9, -8, -4, -3 }, 17);
+            if (!result) break;
+
             //string fileContent = File.ReadAllText("BigIntArray2.txt");
             //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             //int[] nums = stringNumbers.Select(int.Parse).ToArray();
