@@ -76,7 +76,7 @@ class Solution
         // Fix endIndex
         // startIndex: leftSubArrIndex
         // endIndex: leftSubArrIndex + mergeSubArrLen - 1
-        for (int i = leftSubArrIndex + leftSubArrLen; i < leftSubArrIndex + leftSubArrLen + gapLength; i++)
+        for (int i = leftSubArrIndex + 1; i < leftSubArrIndex + leftSubArrLen + gapLength; i++)
         {
             int tempSum = 0;
             for (int j = i;  j < leftSubArrIndex + mergeSubArrLen; j++)
@@ -150,12 +150,12 @@ class Program
 
         while (true)
         {
-            string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
-            string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            int[] nums = stringNumbers.Select(int.Parse).ToArray();
+            //string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
+            //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            //int[] nums = stringNumbers.Select(int.Parse).ToArray();
 
-            result = solution.TestCase(nums, 11081);
-            if (!result) break;
+            //result = solution.TestCase(nums, 11081);
+            //if (!result) break;
 
             result = solution.TestCase(new int[] { -2, 3, 1, 5 }, 9);
             if (!result) break;
