@@ -110,6 +110,8 @@ class Solution
         }
     }
 
+    // Test failed on large data, test case with BigIntArray.txt file.
+    // Use MaxSubArrayKadane instead.
     public int MaxSubArray(int[] nums)
     {
         int subArrIndex;
