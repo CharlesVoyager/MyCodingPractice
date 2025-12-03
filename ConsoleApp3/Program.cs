@@ -42,7 +42,7 @@ class MergeSortExample
 
 class Solution
 {
-    public void MaxSubArray(int[] arr, out int subArrIndex, out int subArrLen)
+    public void DivideConquer(int[] arr, out int subArrIndex, out int subArrLen)
     {
         if (arr.Length <= 1)
         {
@@ -62,8 +62,8 @@ class Solution
         int leftSubArrLen;
         int rightSubArrIndex;
         int rightSubArrLen;
-        MaxSubArray(left, out leftSubArrIndex, out leftSubArrLen);
-        MaxSubArray(right, out rightSubArrIndex, out rightSubArrLen);
+        DivideConquer(left, out leftSubArrIndex, out leftSubArrLen);
+        DivideConquer(right, out rightSubArrIndex, out rightSubArrLen);
 
         Merge(arr, out subArrIndex, out subArrLen,
             left, leftSubArrIndex, leftSubArrLen,
@@ -117,16 +117,23 @@ class Solution
         }
     }
 
-    public bool TestCase(int[] nums, int expected)
+    public int MaxSubArray(int[] nums)
     {
         int subArrIndex;
         int subArrLen;
         int maxSum = 0;
 
-        MaxSubArray(nums, out subArrIndex, out subArrLen);
+        DivideConquer(nums, out subArrIndex, out subArrLen);
 
         for (int i = subArrIndex; i < subArrIndex + subArrLen; i++)
             maxSum += nums[i];
+
+        return maxSum;
+    }
+
+    public bool TestCase(int[] nums, int expected)
+    {
+        int maxSum = MaxSubArray(nums);
 
         Console.Write("Nums:");
         for (int i = 0; i < Math.Min(nums.Length, 10); i++)
@@ -151,9 +158,6 @@ class Program
 
         while (true)
         {
-            result = solution.TestCase(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6);
-            if (!result) break;
-
             //string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081
             //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             //int[] nums = stringNumbers.Select(int.Parse).ToArray();
