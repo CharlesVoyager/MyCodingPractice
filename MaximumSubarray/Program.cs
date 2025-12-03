@@ -124,9 +124,27 @@ class Solution
         return maxSum;
     }
 
+    public int MaxSubArrayKadane(int[] nums)
+    {
+        int maxSoFar = nums[0];
+        int currentMax = nums[0];
+
+        for (int i = 1; i < nums.Length; i++)
+        {
+            currentMax = Math.Max(nums[i], currentMax + nums[i]);
+            maxSoFar = Math.Max(maxSoFar, currentMax);
+        }
+        return maxSoFar;
+    }
+
+
     public bool TestCase(int[] nums, int expected)
     {
+#if false
         int maxSum = MaxSubArray(nums);
+#else
+        int maxSum = MaxSubArrayKadane(nums);
+#endif
 
         Console.Write("Nums:");
         for (int i = 0; i < Math.Min(nums.Length, 10); i++)
@@ -150,12 +168,12 @@ class Program
 
         while (true)
         {
-            //string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
-            //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            //int[] nums = stringNumbers.Select(int.Parse).ToArray();
+            string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
+            string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            int[] nums = stringNumbers.Select(int.Parse).ToArray();
 
-            //result = solution.TestCase(nums, 11081);
-            //if (!result) break;
+            result = solution.TestCase(nums, 11081);
+            if (!result) break;
 
             result = solution.TestCase(new int[] { -2, 3, 1, 5 }, 9);
             if (!result) break;
