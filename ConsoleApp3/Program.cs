@@ -1,4 +1,6 @@
-﻿class MergeSortExample
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+class MergeSortExample
 {
     public static void MergeSort(int[] arr)
     {
@@ -85,8 +87,18 @@ class Solution
 
         int mergeSubArrSum = 0;
         int mergeSubArrLen = leftSubArrLen + gapLength + rightSubArrLen;
+        Dictionary<int, int> tempSubSums = new Dictionary<int, int>();
         for (int i = leftSubArrIndex; i < leftSubArrIndex + mergeSubArrLen; i++)
+        {
             mergeSubArrSum += arr[i];
+            tempSubSums.Add(i - leftSubArrIndex + 1, mergeSubArrSum);
+        }
+        if (tempSubSums.Count() > 0)
+        {
+            // kvp represents the KeyValuePair<int, int> element.
+            KeyValuePair<int, int> maxEntry = tempSubSums.MaxBy(kvp => kvp.Value);
+            mergeSubArrLen = maxEntry.Key;
+        }
 
         if (leftSubArrMaxSum >= rightSubArrMaxSum && leftSubArrMaxSum >= mergeSubArrSum)
         {
@@ -139,15 +151,14 @@ class Program
 
         while (true)
         {
-            //0   .. ......4..................9
-            result = solution.TestCase(new int[] { 7, -2, 6, 2, 4, -5, -9, -8, -4, -3 }, 17);
+            result = solution.TestCase(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6);
             if (!result) break;
 
-            //string fileContent = File.ReadAllText("BigIntArray2.txt");
+            //string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081
             //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             //int[] nums = stringNumbers.Select(int.Parse).ToArray();
 
-            //result = solution.TestCase(nums, 2);
+            //result = solution.TestCase(nums, 11081);
             //if (!result) break;
 
             result = solution.TestCase(new int[] { -2, 3, 1, 5 }, 9);
@@ -201,6 +212,13 @@ class Program
             if (!result) break;
 
             result = solution.TestCase(new int[] { 2, -3, 1, 1 }, 2);
+            if (!result) break;
+
+            result = solution.TestCase(new int[] { 1 }, 1);
+            if (!result) break;
+
+
+            result = solution.TestCase(new int[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 }, 6);
             if (!result) break;
 
             Console.WriteLine("All Test Cases Passed.");
