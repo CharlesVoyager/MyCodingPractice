@@ -1,4 +1,6 @@
 ﻿
+using System.Xml.Linq;
+
 class Solution
 {
     public void DivideConquer(int[] arr, out int subArrIndex, out int subArrLen)
@@ -29,6 +31,18 @@ class Solution
             right, rightSubArrIndex, rightSubArrLen);
     }
 
+    struct SubArrayRange 
+    {
+        public int StartIndex;
+        public int Length;
+
+        public SubArrayRange(int startIndex, int length)
+        {
+            StartIndex = startIndex;
+            Length = length;
+        }
+    }
+
     private void Merge(int[] arr, out int subArrIndex, out int subArrLen,
         int[] left, int leftSubArrIndex, int leftSubArrLen,
         int[] right, int rightSubArrIndex, int rightSubArrLen)
@@ -46,17 +60,37 @@ class Solution
 
         int mergeSubArrSum = 0;
         int mergeSubArrLen = leftSubArrLen + gapLength + rightSubArrLen;
-        Dictionary<int, int> tempSubSums = new Dictionary<int, int>();
+        Dictionary<SubArrayRange, int> tempSubSums = new Dictionary<SubArrayRange, int>();
+        KeyValuePair<SubArrayRange, int> mergeMaxSumSub = new KeyValuePair<SubArrayRange, int>();
+
+        // Fix startIndex
+        // startIndex: leftSubArrIndex
+        // length: 1 up to mergeSubArrLen
         for (int i = leftSubArrIndex; i < leftSubArrIndex + mergeSubArrLen; i++)
         {
             mergeSubArrSum += arr[i];
-            tempSubSums.Add(i - leftSubArrIndex + 1, mergeSubArrSum);
+            SubArrayRange subArrayRange = new SubArrayRange(leftSubArrIndex, i - leftSubArrIndex + 1);
+            tempSubSums.Add(subArrayRange, mergeSubArrSum);
         }
-        if (tempSubSums.Count() > 0)
+
+        // Fix endIndex
+        // startIndex: leftSubArrIndex
+        // endIndex: leftSubArrIndex + mergeSubArrLen - 1
+        for (int i = leftSubArrIndex + leftSubArrLen; i < leftSubArrIndex + gapLength; i++)
         {
-            // kvp represents the KeyValuePair<int, int> element.
-            KeyValuePair<int, int> maxEntry = tempSubSums.MaxBy(kvp => kvp.Value);
-            mergeSubArrLen = maxEntry.Key;
+            int tempSum = 0;
+            for (int j = i;  j < leftSubArrIndex + mergeSubArrLen; j++)
+                tempSum += arr[j];
+
+            SubArrayRange subArrayRange = new SubArrayRange(i, leftSubArrIndex + mergeSubArrLen - i);
+            tempSubSums.Add(subArrayRange, tempSum);
+        }
+
+        if (tempSubSums.Count() > 0)
+            mergeMaxSumSub = tempSubSums.MaxBy(kvp => kvp.Value);
+        else
+        {
+            Console.WriteLine("Error");
         }
 
         if (leftSubArrMaxSum >= rightSubArrMaxSum && leftSubArrMaxSum >= mergeSubArrSum)
@@ -71,8 +105,8 @@ class Solution
         }
         else
         {
-            subArrIndex = leftSubArrIndex;
-            subArrLen = mergeSubArrLen;
+            subArrIndex = mergeMaxSumSub.Key.StartIndex;
+            subArrLen = mergeMaxSumSub.Key.Length;
         }
     }
 
@@ -116,12 +150,12 @@ class Program
 
         while (true)
         {
-            //string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
-            //string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            //int[] nums = stringNumbers.Select(int.Parse).ToArray();
+            string fileContent = File.ReadAllText("BigIntArray.txt");   // Expected: 11,081 // Output: 10,732
+            string[] stringNumbers = fileContent.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            int[] nums = stringNumbers.Select(int.Parse).ToArray();
 
-            //result = solution.TestCase(nums, 11081);
-            //if (!result) break;
+            result = solution.TestCase(nums, 11081);
+            if (!result) break;
 
             result = solution.TestCase(new int[] { -2, 3, 1, 5 }, 9);
             if (!result) break;
