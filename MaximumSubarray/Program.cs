@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 class Solution
 {
-    public void DivideConquer(int[] arr, out int subArrIndex, out int subArrLen)
+    void DivideConquer(int[] arr, out int subArrIndex, out int subArrLen)
     {
         if (arr.Length <= 1)
         {
@@ -43,7 +43,7 @@ class Solution
         }
     }
 
-    private void Merge(int[] arr, out int subArrIndex, out int subArrLen,
+    void Merge(int[] arr, out int subArrIndex, out int subArrLen,
         int[] left, int leftSubArrIndex, int leftSubArrLen,
         int[] right, int rightSubArrIndex, int rightSubArrLen)
     {
