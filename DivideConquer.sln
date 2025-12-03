@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeSort", "ConsoleApp3\MergeSort.csproj", "{0C18B5F0-3DEF-4407-B2EC-811D7B024C96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumSubarray", "MaximumSubarray\MaximumSubarray.csproj", "{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0C18B5F0-3DEF-4407-B2EC-811D7B024C96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C18B5F0-3DEF-4407-B2EC-811D7B024C96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C18B5F0-3DEF-4407-B2EC-811D7B024C96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
