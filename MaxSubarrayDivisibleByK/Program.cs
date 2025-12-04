@@ -47,7 +47,7 @@ public class Solution
             }
             maxSubarray = Math.Max(maxSubarray, maxSoFar);
 
-            //Console.Write("m: " + m.ToString() + "\r");
+            //Console.Write("remainder: " + remainder.ToString() + "\r");
         }
         return maxSubarray;
     }
@@ -86,7 +86,7 @@ class Program
 
             result = test.TestCase(nums, 100000, 300354);
             if (result == false) break;
-
+   
             result = test.TestCase(new int[] { -41, -40, 1, -28, -14 }, 3, -41);
             if (result == false) break;
 
