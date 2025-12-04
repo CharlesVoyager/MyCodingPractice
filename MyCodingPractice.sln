@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaxSubarrayDivisibleByK", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeSort", "MergeSort\MergeSort.csproj", "{7017EF14-7E2F-4F66-9794-A05D8EF25015}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeLists", "MergeLists\MergeLists.csproj", "{A67296F9-DC55-43E7-B627-AAE7A1B4D640}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7017EF14-7E2F-4F66-9794-A05D8EF25015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7017EF14-7E2F-4F66-9794-A05D8EF25015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7017EF14-7E2F-4F66-9794-A05D8EF25015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A67296F9-DC55-43E7-B627-AAE7A1B4D640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A67296F9-DC55-43E7-B627-AAE7A1B4D640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A67296F9-DC55-43E7-B627-AAE7A1B4D640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A67296F9-DC55-43E7-B627-AAE7A1B4D640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
