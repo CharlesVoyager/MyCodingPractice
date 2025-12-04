@@ -10,28 +10,26 @@ public class Solution
         long maxSoFar = 0;
         long currentMax = 0;
 
-        int shiftPos = 0;
         int arrayLength = nums.Length;
 
         long maxSubarray = long.MinValue;
 
-        for (int m = 0; m < k; m++)
+        for (int remainder = 0; remainder < k; remainder++)
         {
-            shiftPos = m;
-            arrayLength = nums.Length - m;
+            arrayLength = nums.Length - remainder;
 
             if ( arrayLength >= k)
             {
-                if (m == 0)
+                if (remainder == 0)
                 {
                     for (int i = 0; i < k; i++)       // First subarray
-                        maxSoFar += nums[i + shiftPos];
+                        maxSoFar += nums[i + remainder];
 
                     firstK = maxSoFar;
                 }
                 else
                 {
-                    maxSoFar = firstK - nums[m - 1] + nums[m + k - 1];
+                    maxSoFar = firstK - nums[remainder - 1] + nums[remainder + k - 1];
                     firstK = maxSoFar;
                 }
                 currentMax = maxSoFar;
@@ -39,8 +37,9 @@ public class Solution
                 for (int i = 1; i < arrayLength / k; i++)
                 {
                     long chunk = 0;
+                    int index_in_chunk = i * k + remainder;
                     for (int j = 0; j < k; j++)
-                        chunk += nums[ i * k + j + shiftPos];
+                        chunk += nums[index_in_chunk++];
 
                     currentMax = Math.Max(chunk, currentMax + chunk);
                     maxSoFar = Math.Max(maxSoFar, currentMax);
@@ -68,7 +67,6 @@ public class Solution
         return result == expected;
     }
 }
-
 
 class Program
 {
