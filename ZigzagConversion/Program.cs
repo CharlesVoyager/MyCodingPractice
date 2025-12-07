@@ -60,13 +60,12 @@ public class Solution
 
     public bool Test(string s, int numRows, string expected)
     {
-        Solution test = new Solution();
-        string result = test.Convert(s, numRows);
+        string output = Convert(s, numRows);
         Console.WriteLine("Input: " + s + " numRows: " + numRows);
-        Console.WriteLine("Output:   " + result);
+        Console.WriteLine("Output:   " + output);
         Console.WriteLine("Expected: " + expected);
-        Console.WriteLine("Result: " + (result == expected ? "PASS" : "FAIL"));
-        return result == expected;  
+        Console.WriteLine("Result: " + (output == expected ? "PASS" : "FAIL"));
+        return output == expected;  
     }
 }
 class Program

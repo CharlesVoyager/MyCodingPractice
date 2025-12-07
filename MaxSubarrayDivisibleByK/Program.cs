@@ -54,17 +54,17 @@ public class Solution
 
     public bool TestCase(int[] nums, int k, int expected)
     {
-        long result = MaxSubarraySum(nums, k);
+        long output = MaxSubarraySum(nums, k);
 
         Console.Write("Nums:");
         for (int i = 0; i < Math.Min(nums.Length, 10); i++)
             Console.Write(" " + nums[i]);
 
-        Console.Write(", K: " + k.ToString() + ", Output: " + result + ", Expected: " + expected + ", Result: " + (result == expected ? "PASS" : "FAIL"));
+        Console.Write(", K: " + k.ToString() + ", Output: " + output + ", Expected: " + expected + ", Result: " + (output == expected ? "PASS" : "FAIL"));
 
         Console.WriteLine();
 
-        return result == expected;
+        return output == expected;
     }
 }
 

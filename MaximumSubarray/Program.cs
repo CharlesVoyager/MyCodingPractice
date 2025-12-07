@@ -144,18 +144,18 @@ class Solution
 #if false
         int maxSum = MaxSubArray(nums);
 #else
-        int maxSum = MaxSubArrayKadane(nums);
+        int output = MaxSubArrayKadane(nums);
 #endif
 
         Console.Write("Nums:");
         for (int i = 0; i < Math.Min(nums.Length, 10); i++)
             Console.Write(" " + nums[i]);
 
-        Console.Write(", Output: " + maxSum + ", Expected: " + expected + ", Result: " + (maxSum == expected ? "PASS" : "FAIL"));
+        Console.Write(", Output: " + output + ", Expected: " + expected + ", Result: " + (output == expected ? "PASS" : "FAIL"));
 
         Console.WriteLine("");
 
-        if (maxSum == expected) return true;
+        if (output == expected) return true;
         else return false;
     }
 }
