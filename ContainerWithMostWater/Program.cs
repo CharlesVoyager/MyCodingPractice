@@ -1,5 +1,28 @@
-﻿public class Solution
+﻿// 11. Container With Most Water
+public class Solution
 {
+    public int MaxArea(int[] height)
+    {
+        int maxSoFar = 0;
+        int leftLineIndex = 0;
+        int rightLineIndex = height.Length - 1;
+
+        while (leftLineIndex < rightLineIndex)
+        { 
+            maxSoFar = Math.Max(maxSoFar, (rightLineIndex - leftLineIndex) * Math.Min(height[leftLineIndex], height[rightLineIndex]));
+       
+            if (height[leftLineIndex] < height[rightLineIndex]) 
+                leftLineIndex++; 
+            else if (height[leftLineIndex] > height[rightLineIndex])
+                rightLineIndex--;
+            else
+                leftLineIndex++;
+        }
+        
+        return maxSoFar;
+    }
+
+#if false   // Fail: Time limit exceeded.
     public int MaxArea(int[] height)
     {
         int maxSoFar = 0;
@@ -15,6 +38,8 @@
         }
         return maxSoFar;
     }
+
+#endif
 
     public bool Test(int[] height, int expected)
     {
