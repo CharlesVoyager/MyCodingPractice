@@ -1,9 +1,6 @@
 ﻿// 98. Validate Binary Search Tree 
 
 //Definition for a binary tree node.
-using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
-
 public class TreeNode {
     public int val;
     public TreeNode left;
@@ -17,28 +14,35 @@ public class TreeNode {
  
 public class Solution
 {
+    List<int> orderedNums = new List<int>();
     public bool IsValidBST(TreeNode root)
     {
-        TreeNode leftNode = root.left;
-        TreeNode rightNode = root.right;
+        orderedNums.Clear();
+        InorderBinarySearchTree(root);
 
-        while (leftNode != null || rightNode != null)
+        if (orderedNums == null || orderedNums.Count <= 1)
+            return true;
+
+        for (int i = 0; i < orderedNums.Count - 1; i++)
         {
-            if (leftNode != null)
-                if (leftNode.val < root.val)
-                    leftNode = leftNode.left;
-                else
-                    return false;
-
-            if (rightNode != null)
-                if (rightNode.val > root.val)
-                    rightNode = rightNode.right;
-                else
-                    return false;
+            if (orderedNums[i] >= orderedNums[i + 1])
+                return false;
         }
-
         return true;
     }
+
+    public void InorderBinarySearchTree(TreeNode node)
+    {
+        if (node == null)
+            return;
+
+        InorderBinarySearchTree(node.left);
+        orderedNums.Add(node.val);        //Console.Write(" " + node.val.ToString());
+        InorderBinarySearchTree(node.right);
+
+        return;
+    }
+
 
     public TreeNode CreateTreeNodes(int[] nums)
     {
@@ -59,8 +63,24 @@ public class Solution
         }
         return nodes[0];
     }
-}
 
+    public void PrintOrderedNums()
+    {
+        foreach (int n in orderedNums)
+            Console.Write(" " + n);
+    }
+
+    public bool TestCase(int[] nums, bool expected)
+    {
+        TreeNode root = CreateTreeNodes(nums);
+        bool output = IsValidBST(root);
+        PrintOrderedNums();
+
+        Console.WriteLine(" Output: " + output + " Expected: " + expected +  " Result: " + (expected==output ? "PASS" : "FAIL"));
+      
+        return expected == output;
+    }
+}
 
 class Program
 {
@@ -69,10 +89,27 @@ class Program
         bool result;
         Solution test = new Solution();
 
-
         while (true)
         {
-            TreeNode root = test.CreateTreeNodes(new int[] { 5, 1, 4, int.MinValue, int.MinValue, 3, 6 });
+            result = test.TestCase(new int[] { 5, 1, 4, int.MinValue, int.MinValue, 3, 6 }, false);
+            if (result == false) break;  
+           
+            result = test.TestCase(new int[] { 5, 1, 6, int.MinValue, int.MinValue, 3, 7 }, false);
+            if (result == false) break;
+
+            result = test.TestCase(new int[] { 5, 1, 7, int.MinValue, int.MinValue, 6, 8 }, true);
+            if (result == false) break;
+       
+            result = test.TestCase(new int[] { 2, 1, 3 }, true);
+            if (result == false) break;
+
+            result = test.TestCase(new int[] { 2 }, true);
+            if (result == false) break;
+
+            result = test.TestCase(new int[] { 5, 1, 7, 0, 2, 6, 8 }, true);
+            if (result == false) break;
+
+            Console.WriteLine("ALL TESTS PASS");
             break;
         }
     }
