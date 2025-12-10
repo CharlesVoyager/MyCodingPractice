@@ -8,7 +8,7 @@
 
         listNums.Sort();
 
-        // Remove negative and 0
+        // Remove negative and 0.
         while (listNums.Count > 0)
         {
             if (listNums[0] <= 0)
@@ -27,7 +27,7 @@
             {
                 listNums.RemoveAt(0);
 
-                // Remove duplicates
+                // Remove duplicates.
                 while (listNums.Count > 0 && listNums[0] == curMissingPostive)
                         listNums.RemoveAt(0);
 
@@ -70,9 +70,8 @@ class Program
 
         while (true)
         {
-            result = solution.TestCase(new int[] { 1,2,3 }, 4);
+            result = solution.TestCase(new int[] { 1, 2, 3 }, 4);
             if (!result) break;
-
 
             result = solution.TestCase(new int[] { 0, 2, 2, 1, 1 }, 3);
             if (!result) break;
