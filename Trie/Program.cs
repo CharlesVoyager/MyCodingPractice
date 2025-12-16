@@ -8,7 +8,10 @@ public class Node
     public Node Set(char letter)
     {
         int index = LetterToIndex(letter);
-        Nodes[index] = new Node();
+
+        if (Nodes[index] == null)
+            Nodes[index] = new Node();
+
         return Nodes[index];
     }
 
@@ -46,7 +49,6 @@ public class Trie
             node = node.Set(c);
 
         node.Value = NumberOfString++;
-
     }
 
     public bool Search(string word)
@@ -95,17 +97,22 @@ class Program
     public static void Main()
     {
         Trie obj = new Trie();
-        obj.Insert("Apple");
-        bool param_2 = obj.Search("App");
-        bool param_3 = obj.StartsWith("App");
 
-        Console.WriteLine("Search App: " + param_2.ToString());
-        Console.WriteLine("StartWith App: " + param_3.ToString());
+        // ["app"],["apple"],["beer"],["add"],["jam"],["rental"],["apps"]
+        obj.Insert("app");
+        obj.Insert("apple");
+        //obj.Insert("beer");
+        //obj.Insert("add");
+        //obj.Insert("jam");
+        //obj.Insert("rental");
+        //obj.Insert("apps");
 
-        obj.Insert("App");
 
-        param_2 = obj.Search("App");
-        Console.WriteLine("Search App: " + param_2.ToString());
+        bool param_2 = obj.Search("app");
+     //   bool param_3 = obj.StartsWith("App");
+
+        Console.WriteLine("Search app: " + param_2.ToString());
+
     }
 }
 
