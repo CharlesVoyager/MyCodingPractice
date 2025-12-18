@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstMissingPositive", "Fir
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductArrayExceptSelf", "ProductArrayExceptSelf\ProductArrayExceptSelf.csproj", "{07DE4193-C013-4152-B1AF-0D34C455440E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trie", "Trie\Trie.csproj", "{E33C74F9-6767-4546-A5A0-7D8BC25C6C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trie", "Trie\Trie.csproj", "{E33C74F9-6767-4546-A5A0-7D8BC25C6C6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClimbingStairs", "ClimbingStairs\ClimbingStairs.csproj", "{01B74CCE-F1BB-49BA-A13A-27E3BDCEDFA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{E33C74F9-6767-4546-A5A0-7D8BC25C6C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33C74F9-6767-4546-A5A0-7D8BC25C6C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33C74F9-6767-4546-A5A0-7D8BC25C6C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01B74CCE-F1BB-49BA-A13A-27E3BDCEDFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01B74CCE-F1BB-49BA-A13A-27E3BDCEDFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01B74CCE-F1BB-49BA-A13A-27E3BDCEDFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01B74CCE-F1BB-49BA-A13A-27E3BDCEDFA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
