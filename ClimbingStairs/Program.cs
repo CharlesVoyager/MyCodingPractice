@@ -9,6 +9,24 @@ n: 44, Expected: 1,134,903,170
 n: 45, Expected: 1,836,311,903
  */
 
+public class Solution
+{
+    public int ClimbStairs(int n)
+    {
+        if (n == 1) return 1;
+
+        int[] ways = new int[n + 1];
+        ways[0] = 1;
+        ways[1] = 1;
+
+        for (int i = 2; i < n + 1; i++)
+            ways[i] = ways[i - 1] + ways[i - 2];
+
+        return ways[n];
+    }
+}
+
+#if false
 // Submission is accepeted: Runtime 0ms, Beats 100%.
 public class Solution
 {
@@ -35,6 +53,7 @@ public class Solution
         return currentDistinctWays;
     }
 }
+#endif
 
 #if false
 // Test case n: 44. The output is correct but time limit exceeded.
@@ -100,14 +119,19 @@ class Program
         Solution test = new Solution();
         int distinctWays;
 
+        for (int i = 2; i < 46; i++)
+        {
+            distinctWays = test.ClimbStairs(i);   
+            Console.WriteLine( i + " Stairs: " + distinctWays.ToString());
+        }
 
-        distinctWays = test.ClimbStairs(5);    // Expected: 8
-        Console.WriteLine("Steps 5: " + distinctWays.ToString());
+        //distinctWays = test.ClimbStairs(5);    // Expected: 8
+        //Console.WriteLine("5 Stairs: " + distinctWays.ToString());
 
-        distinctWays = test.ClimbStairs(4);    // Expected: 5
-        Console.WriteLine("Steps 4: " + distinctWays.ToString());
+        //distinctWays = test.ClimbStairs(4);    // Expected: 5
+        //Console.WriteLine("4 Stairs: " + distinctWays.ToString());
 
-        //distinctWays = test.ClimbStairs(44);    // Expected: 1,134,903,170
-        //Console.WriteLine("Steps 44: " + distinctWays.ToString());
+        ////distinctWays = test.ClimbStairs(44);    // Expected: 1,134,903,170
+        ////Console.WriteLine("44 Stairs: " + distinctWays.ToString());
     }
 }
