@@ -1,59 +1,47 @@
 ﻿// 208: Implement Trie (Prefix Tree)
 
-public class Node
+using System.Xml.Linq;
+
+public class TrieNode
 {
-    public Node[] Nodes = new Node[52];    // 0:A, 1:B, ... 
-    public int Value = 0;
+    public TrieNode[] Children = new TrieNode[26];   // only lowercase English letters.
+    public bool IsEnd = false;
 
-    public Node Set(char letter)
+    public TrieNode Set(char letter)
     {
-        int index = LetterToIndex(letter);
+        int index = letter - 0x61;
 
-        if (Nodes[index] == null)
-            Nodes[index] = new Node();
+        if (Children[index] == null)
+            Children[index] = new TrieNode();
 
-        return Nodes[index];
+        return Children[index];
     }
-
-    public Node Get(char letter)
+    public TrieNode Get(char letter)
     {
-        int index = LetterToIndex(letter);
-        return Nodes[index];
-    }
-
-    int LetterToIndex(char c)
-    {
-        if (c >= 'A' && c <= 'Z')
-            return c - 0x41;
-        else if (c >= 'a' && c <= 'z')
-            return c - 0x61 + 26;
-        else
-            return 0;
+        return Children[letter - 0x61];
     }
 }
 
-
 public class Trie
 {
-    int NumberOfString = 1;
-    Node root = new Node();
+    TrieNode root = new TrieNode();
     public Trie()
     {
     }
 
     public void Insert(string word)
     {
-        Node node = root;
+        TrieNode node = root;
 
         foreach (char c in word)
             node = node.Set(c);
 
-        node.Value = NumberOfString++;
+        node.IsEnd = true;
     }
 
     public bool Search(string word)
     {
-        Node node = root;
+        TrieNode node = root;
 
         foreach (char c in word)
         {   
@@ -62,15 +50,12 @@ public class Trie
                 return false;
         }
 
-        if (node.Value == 0)
-            return false;
-        else
-            return true;
+        return node.IsEnd;       
     }
 
     public bool StartsWith(string prefix)
     {
-        Node node = root;
+        TrieNode node = root;
 
         foreach (char c in prefix)
         {
@@ -79,16 +64,6 @@ public class Trie
                 return false;
         }
         return true;
-    }
-
-    int LetterToIndex(char c)
-    {
-        if (c >= 'A' && c <= 'Z')
-            return c - 0x41;
-        else if (c >= 'a' && c <= 'z')
-            return c - 0x61 + 26;
-        else
-            return 0;
     }
 }
 
@@ -101,15 +76,16 @@ class Program
         // ["app"],["apple"],["beer"],["add"],["jam"],["rental"],["apps"]
         obj.Insert("app");
         obj.Insert("apple");
-        //obj.Insert("beer");
-        //obj.Insert("add");
-        //obj.Insert("jam");
-        //obj.Insert("rental");
-        //obj.Insert("apps");
+        obj.Insert("beer");
+        obj.Insert("add");
+        obj.Insert("jam");
+        obj.Insert("rental");
+        obj.Insert("apps");
 
 
         bool param_2 = obj.Search("app");
-     //   bool param_3 = obj.StartsWith("App");
+        bool param_3 = obj.StartsWith("badx");
+        bool param_4 = obj.StartsWith("bee");
 
         Console.WriteLine("Search app: " + param_2.ToString());
 
