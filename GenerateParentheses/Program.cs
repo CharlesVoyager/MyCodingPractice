@@ -12,21 +12,20 @@ public class Solution
             if (c == '(')
                 leftCount++;
 
+        int rightCount = 0;
+        foreach (char c in currentStr)
+            if (c == ')')
+                rightCount++;
+
         if (leftCount < targetN)
         {
             AddLeftParenthes(currentStr + "(");
-
-            int rightCount = 0;
-            foreach (char c in currentStr)
-                if (c == ')')
-                    rightCount++;
 
             if (rightCount < targetN)
                 AddRightParenthes(currentStr + ")");
         }
         else
             AddRightParenthes(currentStr + ")");
-
     }
 
     void AddRightParenthes(string currentStr)
@@ -69,5 +68,7 @@ class Program
 
         foreach (string s in results)
             Console.WriteLine(s);
+
+        Console.WriteLine("Count: " + results.Count().ToString());  // n: 8, Expected: 1430.
     }
 }
