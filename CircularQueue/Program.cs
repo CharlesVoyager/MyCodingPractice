@@ -3,59 +3,32 @@
 public class MyCircularQueue
 {
     int[] Buffer;
-    int Length = 0;
-    int IndexFront = -1;
-    int IndexBack = -1;
+    int Capacity = 0;
+    int IndexFront = 0;
+    int IndexRear = -1;
+    int Count = 0;
     public MyCircularQueue(int k)
     {
         Buffer = new int[k];
-        Length = k;
+        Capacity = k;
     }
 
     public bool EnQueue(int value)
     {
         if (IsFull()) return false;
 
-        if (IsEmpty())
-        {
-            IndexFront = 0;
-            IndexBack = 0;
-            Buffer[IndexBack] = value;
-        }
-        else
-        {
-            if (IndexBack == Length - 1)
-                IndexBack = 0;
-            else
-                IndexBack++;
+        IndexRear = (IndexRear + 1) % Capacity;
+        Buffer[IndexRear] = value;
 
-            Buffer[IndexBack] = value;
-        }
+        Count++;
         return true;
-    }
-
-    int Count()
-    {
-        if (IsEmpty()) return 0;
-        return IndexBack - IndexFront + 1;
     }
 
     public bool DeQueue()
     {
         if (IsEmpty()) return false;
-
-        if (Count() == 1)
-        {
-            IndexFront = -1;
-            IndexBack = -1;
-        }
-        else
-        {
-            if (IndexFront == Length - 1)
-                IndexFront = 0;
-            else
-                IndexFront++;
-        }
+        IndexFront = (IndexFront + 1) % Capacity;
+        Count--;
         return true;
     }
 
@@ -68,23 +41,17 @@ public class MyCircularQueue
     public int Rear()
     {
         if (IsEmpty()) return -1;
-        return Buffer[IndexBack];
+        return Buffer[IndexRear];
     }
 
     public bool IsEmpty()
     {
-        if (IndexFront == -1 && IndexBack == -1)
-            return true;
-        else
-            return false;
+        return Count == 0;
     }
 
     public bool IsFull()
     {
-        if ((IndexBack + 1) % Length == IndexFront)
-            return true;
-        else
-            return false;
+        return Count == Capacity;
     }
 }
 
