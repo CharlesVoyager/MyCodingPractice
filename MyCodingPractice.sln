@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenerateParentheses", "Gene
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Combinations", "Combinations\Combinations.csproj", "{33A09A74-4BC5-43F0-A615-90D5DBDC0B52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircularQueue", "CircularQueue\CircularQueue.csproj", "{26E0A8EA-9EEE-4DCE-823E-BD00082EC093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CircularQueue", "CircularQueue\CircularQueue.csproj", "{26E0A8EA-9EEE-4DCE-823E-BD00082EC093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectangleOverlap", "RectangleOverlap\RectangleOverlap.csproj", "{02A48E95-4CDB-4D49-A54C-99CBD7430702}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{26E0A8EA-9EEE-4DCE-823E-BD00082EC093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26E0A8EA-9EEE-4DCE-823E-BD00082EC093}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26E0A8EA-9EEE-4DCE-823E-BD00082EC093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A48E95-4CDB-4D49-A54C-99CBD7430702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A48E95-4CDB-4D49-A54C-99CBD7430702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A48E95-4CDB-4D49-A54C-99CBD7430702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A48E95-4CDB-4D49-A54C-99CBD7430702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
