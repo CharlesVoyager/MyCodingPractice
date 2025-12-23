@@ -1,7 +1,4 @@
 ﻿// 200. Number of Islands
-
-using System.Linq;
-
 public class Solution
 {
     Dictionary<(int, int), bool> visitedGrid = new Dictionary<(int, int), bool>();
