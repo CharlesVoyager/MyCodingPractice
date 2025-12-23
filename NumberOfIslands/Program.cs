@@ -2,20 +2,18 @@
 
 public class Solution
 {
+    List<(int, int)> ConnectedGraph = new List<(int, int)>();
+  
     public int NumIslands(char[][] grid)
     {
-        // test
+        // Debug: Print the grid
         for (int y = 0; y < grid.Length; y++)
         {
             for (int x = 0; x < grid[y].Length; x++)
-            {
                 Console.Write(grid[y][x] + " ");
-            }
+
             Console.WriteLine();
         }
-
-
-
 
         Stack<(int, int)> queue = new Stack<(int, int)>();  // x, y, visited
         Dictionary<(int, int), bool> visitedGrid = new Dictionary<(int, int), bool>();
@@ -41,9 +39,7 @@ public class Solution
 
                 // Visiting the vertex
                 if (grid[y][x] == '1')
-                {
-                    Console.WriteLine($"Visiting node: ({x}, {y})");    
-                }
+                    ConnectedGraph.Add((x, y));
 
                 // Marking as visited
                 visitedGrid[(x, y)] = true;
@@ -52,10 +48,37 @@ public class Solution
                 List<(int, int)> neighbors = FindNeighbors(x, y, grid);
 
                 foreach(var neighbor in neighbors)
-                    queue.Push(neighbor);
+                {        
+                    if (visitedGrid[neighbor] == false)
+                        queue.Push(neighbor);
+                }
             }
         }
 
+        // Debug: Print connected graph
+        Console.WriteLine("\nConnected Graph:");
+
+        char[][] connectedGraph = new char[grid.Length][];
+
+        for(int y = 0; y < grid.Length; y++)
+        {
+            connectedGraph[y] = new char[grid[y].Length];
+            for (int x = 0; x < grid[y].Length; x++)
+            {
+                if (ConnectedGraph.Contains((x, y)))
+                    connectedGraph[y][x] = '1';
+                else
+                    connectedGraph[y][x] = ' ';
+            }
+        }
+
+        for (int y = 0; y < connectedGraph.Length; y++)
+        {
+            for (int x = 0; x < connectedGraph[y].Length; x++)
+                Console.Write(connectedGraph[y][x] + " ");
+
+            Console.WriteLine();
+        }
 
         return 0;
     }
@@ -66,28 +89,28 @@ public class Solution
         // Up
         if (y - 1 >= 0)
         {
-            if (grid[x][y - 1] == '1')
+            if (grid[y-1][x] == '1')
                 neighbors.Add((x, y - 1));
         }
 
         // Down
         if (y + 1 < grid.Length)
         {
-            if (grid[x][y + 1] == '1')
+            if (grid[y + 1][x] == '1')
                 neighbors.Add((x, y + 1));
         }
 
         // Left
         if (x - 1 >= 0)
         {
-            if (grid[x - 1][y] == '1')
+            if (grid[y][x - 1] == '1')
                 neighbors.Add((x - 1, y));
         }
  
         // Right
         if (x + 1 < grid[y].Length)
         {
-            if (grid[x + 1][y] == '1')
+            if (grid[y][x + 1] == '1')
                 neighbors.Add((x + 1, y));
         }
         return neighbors;
