@@ -71,10 +71,10 @@ public class Solution
         }
     }
 
+    // Breadth First Search
     List<(int, int)> FindConnectedGraph(int startPointX, int startPointY, char[][] grid)
     {
         List<(int, int)> ConnectedGraph = new List<(int, int)>();
-
         Stack<(int, int)> queue = new Stack<(int, int)>();  // x, y
 
         queue.Push((startPointX, startPointY));
@@ -92,10 +92,8 @@ public class Solution
 
             // Adding neighbors
             List<(int, int)> neighbors = FindNeighborsWithValueOne(x, y, grid);
-
             foreach (var neighbor in neighbors)
                     queue.Push(neighbor);
-
         }
         return ConnectedGraph;
     }
@@ -331,7 +329,7 @@ class Program
         };
 #endif
 
-#if true    // Test Case 2, Expected Output: 3
+#if false    // Test Case 2, Expected Output: 3
         char[][] grid = new char[][] {
             new char[] { '1', '1', '0', '0', '0' },
             new char[] { '1', '1', '0', '0', '0' },
@@ -341,16 +339,17 @@ class Program
 
 #endif
 
-#if false    // Test Case 3
+#if true    // Test Case 3
         char[][] grid = new char[][] {
             new char[] { '0', '0', '0', '0', '0' },
             new char[] { '0', '0', '0', '0', '0' },
             new char[] { '0', '0', '0', '0', '0' },
-            new char[] { '0', '0', '0', '1', '1' }
+            new char[] { '0', '0', '0', '0', '0' }
         };
-
 #endif
 
-        test.NumIslands(grid);
+        int result = test.NumIslands(grid);
+
+        Console.WriteLine("Number of Island: " + result);
     }
 }
