@@ -33,6 +33,7 @@ public class Solution
         return ConnectedGraphCount;
     }
 
+    // Breadth-First Search
     List<int> FindConnectedGraph(int startVertex)
     {
         List<int> ConnectedGraph = new List<int>();
@@ -75,38 +76,62 @@ public class Solution
 
 class Program
 {
-    public static void Main()
+    public static bool TestCase(int[][] input, int expected)
     {
         Solution test = new Solution();
 
-#if false   // Test Case 1, Expected Output: 1   
-        int[][] grid = new int[][] {
-            new int[] { 1, 1, 0  },
-            new int[] { 1, 1, 0  },
-            new int[] { 0, 0, 1  },
-        };
-#endif
+        int output = test.FindCircleNum(input);
+        return output == expected;
+    }
 
-#if false    // Test Case 2, Expected Output: 3   
-        int[][] grid = new int[][] {
-            new int[] { 1, 0, 0  },
-            new int[] { 0, 1, 0  },
-            new int[] { 0, 0, 1  },
-        };
-#endif
+    public static void Main()
+    {
+        bool result;
 
-#if true    // Test Case 2, Expected Output: 1   
-        int[][] grid = new int[][] {
+        while (true)
+        {
+            // Test Case 1, Expected Output: 2   
+            int[][] input1 = new int[][] {
+                new int[] { 1, 1, 0  },
+                new int[] { 1, 1, 0  },
+                new int[] { 0, 0, 1  },
+            };
+
+            result = TestCase(input1, 2);
+            if (!result)
+            {
+                Console.WriteLine("Test case 1 failed");
+                break;
+            }
+
+            // Test Case 2, Expected Output: 3   
+            int[][] input2 = new int[][] {
+                new int[] { 1, 0, 0  },
+                new int[] { 0, 1, 0  },
+                new int[] { 0, 0, 1  },
+            };
+
+            result = TestCase(input2, 3);
+            if (!result)
+            {
+                Console.WriteLine("Test case 2 failed");
+                break;
+            }
+            // Test Case 3, Expected Output: 1   
+            int[][] input3 = new int[][] {
             new int[] { 1, 0, 0, 1 },
             new int[] { 0, 1, 1, 0 },
             new int[] { 0, 1, 1, 1 },
-            new int[] { 1, 0, 1, 1 },
-        };
-#endif
+            new int[] { 1, 0, 1, 1 }
+            };
 
+            result = TestCase(input3, 1);
+            if (!result) break;
 
-        int result = test.FindCircleNum(grid);
+            Console.WriteLine("All test cases passed!");
+            break;
+        }
 
-        Console.WriteLine("Number of Provinces: " + result);
+        Console.ReadLine();
     }
 }
