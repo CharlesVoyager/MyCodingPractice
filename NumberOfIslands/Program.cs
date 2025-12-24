@@ -75,13 +75,13 @@ public class Solution
     List<(int, int)> FindConnectedGraph(int startPointX, int startPointY, char[][] grid)
     {
         List<(int, int)> ConnectedGraph = new List<(int, int)>();
-        Stack<(int, int)> queue = new Stack<(int, int)>();  // x, y
+        Stack<(int, int)> vertices = new Stack<(int, int)>();  // x, y      // NOTE: Use Stack of Queue because Queue may out of memory for large input grid.
 
-        queue.Push((startPointX, startPointY));
+        vertices.Push((startPointX, startPointY));
 
-        while (queue.Count > 0)
+        while (vertices.Count > 0)
         {
-            var (x, y) = queue.Pop();
+            var (x, y) = vertices.Pop();
 
             // Visiting the vertex
             if (grid[y][x] == '1')
@@ -93,7 +93,7 @@ public class Solution
             // Adding neighbors
             List<(int, int)> neighbors = FindNeighborsWithValueOne(x, y, grid);
             foreach (var neighbor in neighbors)
-                    queue.Push(neighbor);
+                vertices.Push(neighbor);
         }
         return ConnectedGraph;
     }
@@ -329,7 +329,7 @@ class Program
         };
 #endif
 
-#if false    // Test Case 2, Expected Output: 3
+#if true    // Test Case 2, Expected Output: 3
         char[][] grid = new char[][] {
             new char[] { '1', '1', '0', '0', '0' },
             new char[] { '1', '1', '0', '0', '0' },
@@ -339,7 +339,7 @@ class Program
 
 #endif
 
-#if true    // Test Case 3
+#if false    // Test Case 3
         char[][] grid = new char[][] {
             new char[] { '0', '0', '0', '0', '0' },
             new char[] { '0', '0', '0', '0', '0' },
