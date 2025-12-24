@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34330.188
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximumSubarray", "MaximumSubarray\MaximumSubarray.csproj", "{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}"
 EndProject
@@ -44,6 +44,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RectangleOverlap", "RectangleOverlap\RectangleOverlap.csproj", "{02A48E95-4CDB-4D49-A54C-99CBD7430702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberOfIslands", "NumberOfIslands\NumberOfIslands.csproj", "{654FF93E-430C-44DC-AC46-12A331641078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RottingOranges", "RottingOranges\RottingOranges.csproj", "{6C6DEE3F-1131-413A-B443-30B3CB0C1126}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{654FF93E-430C-44DC-AC46-12A331641078}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{654FF93E-430C-44DC-AC46-12A331641078}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{654FF93E-430C-44DC-AC46-12A331641078}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6DEE3F-1131-413A-B443-30B3CB0C1126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6DEE3F-1131-413A-B443-30B3CB0C1126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6DEE3F-1131-413A-B443-30B3CB0C1126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6DEE3F-1131-413A-B443-30B3CB0C1126}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
