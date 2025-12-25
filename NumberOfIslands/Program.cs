@@ -10,15 +10,15 @@ public class Solution
         Console.WriteLine("Input Grid: ");
         DebugPrintGrid(grid);
 
-        for (int y = 0; y < grid.Length; y++)
+        for (int row = 0; row < grid.Length; row++)
         {
-            for (int x = 0; x < grid[y].Length; x++)
+            for (int column = 0; column < grid[row].Length; column++)
             {
-                if (grid[y][x] == '1')
+                if (grid[row][column] == '1')
                 {
                     // New connected graph found
                     ConnectedGraphCount++;
-                    List<(int, int)> ConnectedGraph = FindConnectedGraph(x, y, grid);
+                    List<(int, int)> ConnectedGraph = FindConnectedGraph(row, column, grid);
 
                     // Debug: Print connected graph
                     DebugPrintConnectedGraph(ConnectedGraph, grid);
@@ -34,11 +34,10 @@ public class Solution
 
     void DebugPrintGrid(char[][] grid)
     {
-        // Debug: Print the grid
-        for (int y = 0; y < grid.Length; y++)
+        for (int r = 0; r < grid.Length; r++)
         {
-            for (int x = 0; x < grid[y].Length; x++)
-                Console.Write(grid[y][x] + " ");
+            for (int c = 0; c < grid[r].Length; c++)
+                Console.Write(grid[r][c] + " ");
 
             Console.WriteLine();
         }
@@ -50,83 +49,83 @@ public class Solution
 
         char[][] outputChars = new char[grid.Length][];
 
-        for (int y = 0; y < grid.Length; y++)
+        for (int r = 0; r < grid.Length; r++)
         {
-            outputChars[y] = new char[grid[y].Length];
-            for (int x = 0; x < grid[y].Length; x++)
+            outputChars[r] = new char[grid[r].Length];
+            for (int c = 0; c < grid[r].Length; c++)
             {
-                if (ConnectedGraph.Contains((x, y)))
-                    outputChars[y][x] = '1';
+                if (ConnectedGraph.Contains((r, c)))
+                    outputChars[r][c] = '1';
                 else
-                    outputChars[y][x] = ' ';
+                    outputChars[r][c] = ' ';
             }
         }
 
-        for (int y = 0; y < outputChars.Length; y++)
+        for (int r = 0; r < outputChars.Length; r++)
         {
-            for (int x = 0; x < outputChars[y].Length; x++)
-                Console.Write(outputChars[y][x] + " ");
+            for (int c = 0; c < outputChars[r].Length; c++)
+                Console.Write(outputChars[r][c] + " ");
 
             Console.WriteLine();
         }
     }
 
     // Breadth First Search
-    List<(int, int)> FindConnectedGraph(int startPointX, int startPointY, char[][] grid)
+    List<(int, int)> FindConnectedGraph(int startVertexRow, int startVertexColumn, char[][] grid)
     {
         List<(int, int)> ConnectedGraph = new List<(int, int)>();
-        Stack<(int, int)> vertices = new Stack<(int, int)>();  // x, y      // NOTE: Use Stack of Queue because Queue may out of memory for large input grid.
+        Stack<(int, int)> vertices = new Stack<(int, int)>();  // row, column, NOTE: Use Stack of Queue because Queue may out of memory for large input grid.
 
-        vertices.Push((startPointX, startPointY));
+        vertices.Push((startVertexRow, startVertexColumn));
 
         while (vertices.Count > 0)
         {
-            var (x, y) = vertices.Pop();
+            var (r, c) = vertices.Pop();
 
             // Visiting the vertex
-            if (grid[y][x] == '1')
-                ConnectedGraph.Add((x, y));
+            if (grid[r][c] == '1')
+                ConnectedGraph.Add((r, c));
 
             // Marking as visited
-            grid[y][x] = 'V';
+            grid[r][c] = 'V';
 
             // Adding neighbors
-            List<(int, int)> neighbors = FindNeighborsWithValueOne(x, y, grid);
+            List<(int, int)> neighbors = FindNeighborsWithValueOne(r, c, grid);
             foreach (var neighbor in neighbors)
                 vertices.Push(neighbor);
         }
         return ConnectedGraph;
     }
 
-    List<(int, int)> FindNeighborsWithValueOne(int x, int y, char[][] grid)
+    List<(int, int)> FindNeighborsWithValueOne(int r, int c, char[][] grid)
     {
         List<(int, int)> neighbors = new List<(int, int)>();
         // Up
-        if (y - 1 >= 0)
+        if (r - 1 >= 0)
         {
-            if (grid[y - 1][x] == '1')
-                neighbors.Add((x, y - 1));
+            if (grid[r - 1][c] == '1')
+                neighbors.Add((r - 1, c));
         }
 
         // Down
-        if (y + 1 < grid.Length)
+        if (r + 1 < grid.Length)
         {
-            if (grid[y + 1][x] == '1')
-                neighbors.Add((x, y + 1));
+            if (grid[r + 1][c] == '1')
+                neighbors.Add((r + 1, c));
         }
 
         // Left
-        if (x - 1 >= 0)
+        if (c - 1 >= 0)
         {
-            if (grid[y][x - 1] == '1')
-                neighbors.Add((x - 1, y));
+            if (grid[r][c - 1] == '1')
+                neighbors.Add((r, c - 1));
         }
 
         // Right
-        if (x + 1 < grid[y].Length)
+        if (c + 1 < grid[r].Length)
         {
-            if (grid[y][x + 1] == '1')
-                neighbors.Add((x + 1, y));
+            if (grid[r][c + 1] == '1')
+                neighbors.Add((r, c + 1));
         }
         return neighbors;
     }
