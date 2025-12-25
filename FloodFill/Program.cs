@@ -52,7 +52,7 @@ public class Solution
                 neighbors.Add((r, c - 1));
         }
 
-        // down
+        // right
         if (c + 1 <= image[r].Length - 1)
         {
             if (image[r][c + 1] == SourceColor)
