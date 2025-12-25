@@ -1,5 +1,59 @@
 ﻿// 547. Number of Provinces
 
+
+public class Solution
+{
+    bool[] IsVisited;
+    int ConnectedGraphCount = 0;
+    List<int> ConnectedGraph = new List<int>();
+
+    public int FindCircleNum(int[][] isConnected)
+    {
+        // Initialize Visited array
+        IsVisited = new bool[isConnected.Length];
+        for (int v = 0; v < isConnected.Length; v++)
+        {
+            if (IsVisited[v] == false)
+            {
+                // New connected graph found
+                ConnectedGraphCount++;
+                ConnectedGraph.Clear();
+                DepthFirstSearch(v, isConnected);
+            }
+        }
+        return ConnectedGraphCount; 
+    }
+
+    // Depth-First Search
+    void DepthFirstSearch(int startVertex, int[][] isConnected)
+    {
+        ConnectedGraph.Add(startVertex);
+        IsVisited[startVertex] = true;
+
+        List<int> neighbors = FindNeighbors(startVertex, isConnected);
+
+        if (neighbors.Count == 0)
+            return;
+
+        foreach (var neighbor in neighbors)
+            DepthFirstSearch(neighbor, isConnected);
+
+        return;
+    }
+
+    List<int> FindNeighbors(int v, int[][] isConnected)
+    {
+        List<int> neighbors = new List<int>();
+        for (int i = 0; i < isConnected.Length; i++)
+        {
+            if (isConnected[v][i] == 1 && IsVisited[i] == false && i != v)
+                neighbors.Add(i);
+        }
+        return neighbors;
+    }
+}
+
+#if false
 public class Solution
 {
     bool[] IsVisited;
@@ -72,7 +126,7 @@ public class Solution
         return neighbors;
     }
 }
-
+#endif
 
 class Program
 {

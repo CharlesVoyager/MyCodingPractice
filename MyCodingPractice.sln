@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11312.151 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximumSubarray", "MaximumSubarray\MaximumSubarray.csproj", "{FAC1BA95-ED6C-4CEA-8511-A06EE4FBBE06}"
 EndProject
@@ -48,6 +48,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RottingOranges", "RottingOranges\RottingOranges.csproj", "{6C6DEE3F-1131-413A-B443-30B3CB0C1126}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberOfProvinces", "NumberOfProvinces\NumberOfProvinces.csproj", "{E4C1F06C-4CD0-4BBD-8B9F-78092571E339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloodFill", "FloodFill\FloodFill.csproj", "{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{E4C1F06C-4CD0-4BBD-8B9F-78092571E339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4C1F06C-4CD0-4BBD-8B9F-78092571E339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4C1F06C-4CD0-4BBD-8B9F-78092571E339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
