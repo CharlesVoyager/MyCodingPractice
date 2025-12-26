@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberOfProvinces", "Number
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloodFill", "FloodFill\FloodFill.csproj", "{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01Matrix", "01Matrix\01Matrix.csproj", "{0DFADA5D-5C90-467A-8673-52734FF32E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC7A30F-E4EE-4CCB-A1C9-BF0B5A3A38E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DFADA5D-5C90-467A-8673-52734FF32E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DFADA5D-5C90-467A-8673-52734FF32E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DFADA5D-5C90-467A-8673-52734FF32E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DFADA5D-5C90-467A-8673-52734FF32E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
