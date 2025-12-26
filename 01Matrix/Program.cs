@@ -2,7 +2,6 @@
 
 public class Solution
 {
-
     List<(int, int)> verticesToProcess = new List<(int, int)>();
     int currentDistance = 1;
     public int[][] UpdateMatrix(int[][] mat)
@@ -95,7 +94,6 @@ class Program
     {
         Solution test = new Solution();
 
-
         Console.WriteLine("Input: ");
         DebugPrintMatrix(input);
 
@@ -148,8 +146,6 @@ class Program
                 Console.WriteLine("Test case 1 failed");
                 break;
             }
-
-       
 
             Console.WriteLine("All test cases passed!");
             break;
