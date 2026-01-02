@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloodFill", "FloodFill\Floo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{1C3F2198-2BEE-4EE4-954F-FE7C21D6236D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingH2O", "BuildingH2O\BuildingH2O.csproj", "{9CE4842D-952C-4D35-88D1-0D93E1F8B882}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +161,10 @@ Global
 		{1C3F2198-2BEE-4EE4-954F-FE7C21D6236D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C3F2198-2BEE-4EE4-954F-FE7C21D6236D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C3F2198-2BEE-4EE4-954F-FE7C21D6236D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CE4842D-952C-4D35-88D1-0D93E1F8B882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CE4842D-952C-4D35-88D1-0D93E1F8B882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CE4842D-952C-4D35-88D1-0D93E1F8B882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CE4842D-952C-4D35-88D1-0D93E1F8B882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

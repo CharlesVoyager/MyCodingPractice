@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 public class H2O
 {
 
-    private readonly Barrier _barrier = new Barrier(2);
-    private readonly SemaphoreSlim _semaphore2HDone = new SemaphoreSlim(0);
+    private readonly Barrier _barrier = new Barrier(3);
+    private readonly SemaphoreSlim collectH = new SemaphoreSlim(2);
+    private readonly SemaphoreSlim collectO = new SemaphoreSlim(1);
 
-    static int HydrogenCalledCount = 0;
+
 
     public H2O()
     {
@@ -17,28 +18,26 @@ public class H2O
     public void Hydrogen(Action releaseHydrogen)
     {
 
-        HydrogenCalledCount++;
-
-        while (HydrogenCalledCount > (_barrier.CurrentPhaseNumber + 1) * 2)
-            Thread.Sleep(10);
-
+        collectH.Wait();
         _barrier.SignalAndWait();
 
         releaseHydrogen();
 
-        Console.WriteLine("HydrogenCalledCount: " + HydrogenCalledCount);
-
-        if (HydrogenCalledCount % 2 == 0)
-            _semaphore2HDone.Release();
+        collectH.Release();
     }
 
     public void Oxygen(Action releaseOxygen)
     {
 
-        _semaphore2HDone.Wait();
+        collectO.Wait();
+        _barrier.SignalAndWait();
+
+        Thread.Sleep(10);   
 
         // releaseOxygen() outputs "O". Do not change or remove this line.
         releaseOxygen();
+
+        collectO.Release();
     }
 }
 
@@ -49,22 +48,45 @@ class Program
     {
         var service = new H2O();
 
-        Task[] tasks = new Task[3];
+        Task[] tasks = new Task[6];
 
         tasks[0] = Task.Run(() =>
         {
-            service.Hydrogen(() => Console.Write("H"));
+            service.Oxygen(() => System.Diagnostics.Trace.WriteLine("O"));
+            Console.Write("O");
         });
 
         tasks[1] = Task.Run(() =>
         {
-            service.Oxygen(() => Console.Write("O"));
+            service.Oxygen(() => System.Diagnostics.Trace.WriteLine("O"));
+            Console.Write("O");
         });
 
         tasks[2] = Task.Run(() =>
         {
-            service.Hydrogen(() => Console.Write("H"));
+            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
+            Console.Write("H");
         });
+
+
+        tasks[3] = Task.Run(() =>
+        {
+            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
+            Console.Write("H");
+        });
+
+        tasks[4] = Task.Run(() =>
+        {
+            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
+            Console.Write("H");
+        });
+
+        tasks[5] = Task.Run(() =>
+        {
+            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
+            Console.Write("H");
+        });
+
 
         // Wait for both threads to finish their work
         await Task.WhenAll(tasks);
