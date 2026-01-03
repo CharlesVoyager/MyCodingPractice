@@ -18,6 +18,8 @@ public class DiningPhilosophers
                             Action putRightFork
         )
     {
+        Console.WriteLine($"Philosopher {philosopher} is trying to eat.");
+
         int leftPhilospher = (philosopher + 1) % 5;
         int rightPhilospher = (philosopher == 0) ? 4 : philosopher - 1;
 
