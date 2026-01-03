@@ -41,8 +41,8 @@ public class DiningPhilosophers
 
         semaphores[philosopher].Release();
     }
-
 }
+
 class Program
 {
     public static async Task Main(string[] args)
