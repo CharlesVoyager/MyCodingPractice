@@ -18,7 +18,7 @@ namespace WpfApp
     public class FooBar
     {
         private readonly SemaphoreSlim _semaphoreFoo = new SemaphoreSlim(0);
-        private readonly SemaphoreSlim _semaphoreBar = new SemaphoreSlim(1);
+        private readonly SemaphoreSlim _semaphoreBar = new SemaphoreSlim(0);
         private int n;
 
         public FooBar(int n)
@@ -42,7 +42,7 @@ namespace WpfApp
         {
             for (int i = 0; i < n; i++)
             {
-                _semaphoreFoo.Wait();
+                _semaphoreBar.Wait();
 
                 printBar();
 
