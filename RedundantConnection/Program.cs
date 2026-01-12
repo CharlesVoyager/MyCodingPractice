@@ -35,62 +35,62 @@ public class Solution
         return new int[2] { 0, 0 };
     }
 
-    bool IsConnected(int verticeA, int verticeB, int[][] edges)
+    bool IsConnected(int vertexA, int vertexB, int[][] edges)
     {
         HashSet<int> verticesVisited = new HashSet<int>();
         Stack<int> verticesToProcess = new Stack<int>();
-        verticesToProcess.Push(verticeA);
+        verticesToProcess.Push(vertexA);
 
         while (verticesToProcess.Count > 0)
         {
             int v = verticesToProcess.Pop();
             verticesVisited.Add(v);
-            if (verticesVisited.Contains(verticeB))
+            if (verticesVisited.Contains(vertexB))
                 return true;
 
             List<int> neighbors = FindNeighborsWithoutVisit(v, edges, verticesVisited);
-            foreach (int vertice in neighbors)
+            foreach (int vertex in neighbors)
             {
-                if (verticesToProcess.Contains(vertice) == false)
-                    verticesToProcess.Push(vertice);
+                if (verticesToProcess.Contains(vertex) == false)
+                    verticesToProcess.Push(vertex);
             }
         }
         return false;
     }
 
 
-    HashSet<int> BreadthFirstSearch(int startVertice, int[][] edges)
+    HashSet<int> BreadthFirstSearch(int startVertex, int[][] edges)
     {
         HashSet<int> verticesVisited = new HashSet<int>();
         Stack<int> verticesToProcess = new Stack<int>();
-        verticesToProcess.Push(startVertice);
+        verticesToProcess.Push(startVertex);
 
         while (verticesToProcess.Count > 0)
         {
             int v = verticesToProcess.Pop();
             verticesVisited.Add(v);
             List<int> neighbors = FindNeighborsWithoutVisit(v, edges, verticesVisited);
-            foreach (int vertice in neighbors)
+            foreach (int vertex in neighbors)
             {
-                if (verticesToProcess.Contains(vertice) == false)
-                    verticesToProcess.Push(vertice);
+                if (verticesToProcess.Contains(vertex) == false)
+                    verticesToProcess.Push(vertex);
             }
         }
 
         return verticesVisited;
     }
 
-    List<int> FindNeighborsWithoutVisit(int vertice, int[][] edges, HashSet<int> verticesVisited)
+    List<int> FindNeighborsWithoutVisit(int vertex, int[][] edges, HashSet<int> verticesVisited)
     {
         List<int> neighbors = new List<int>();
         for (int r = 0; r < edges.Length; r++)
         {
-            if (edges[r][0] == vertice)
+            if (edges[r][0] == vertex)
             {
                 if (verticesVisited.Contains(edges[r][1]) == false)
                     neighbors.Add(edges[r][1]);
             }
-            else if (edges[r][1] == vertice)
+            else if (edges[r][1] == vertex)
             {
                 if (verticesVisited.Contains(edges[r][0]) == false)
                     neighbors.Add(edges[r][0]);
