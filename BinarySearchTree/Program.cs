@@ -56,10 +56,11 @@ public class Solution
                 nodes.Add(new TreeNode(n));
         }
 
-        for (int i = 0; i < (nums.Length - 1) / 2; i++) 
+        for (int i = 0; i < nums.Length / 2; i++) 
         {
             nodes[i].left = nodes[i * 2 + 1];
-            nodes[i].right = nodes[i * 2 + 2];
+            if (i * 2 + 2 < nums.Length)
+                nodes[i].right = nodes[i * 2 + 2];
         }
         return nodes[0];
     }
