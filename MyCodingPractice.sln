@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedundantConnection", "Redu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulbSwitcher", "BulbSwitcher\BulbSwitcher.csproj", "{40306F01-3D59-4C85-904A-D9198CD8BCE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtreeOfAnotherTree", "SubtreeOfAnotherTree\SubtreeOfAnotherTree.csproj", "{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -461,6 +463,18 @@ Global
 		{40306F01-3D59-4C85-904A-D9198CD8BCE0}.Release|x64.Build.0 = Release|Any CPU
 		{40306F01-3D59-4C85-904A-D9198CD8BCE0}.Release|x86.ActiveCfg = Release|Any CPU
 		{40306F01-3D59-4C85-904A-D9198CD8BCE0}.Release|x86.Build.0 = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|x64.Build.0 = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Debug|x86.Build.0 = Debug|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|x64.ActiveCfg = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|x64.Build.0 = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACCEA5B5-A004-4BD7-8894-2555C2434B9F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
