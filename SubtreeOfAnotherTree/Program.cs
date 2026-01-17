@@ -63,7 +63,8 @@ public class Solution
             outputValues.Add(node.val);
             return;
         }
-        InorderTraverse(node.left);
+        if (node.left != null)
+            InorderTraverse(node.left);
         outputValues.Add(node.val);
         if (node.right != null)
             InorderTraverse(node.right);
@@ -118,7 +119,10 @@ class Program
             //result = TestCase(new int[] { 3, 4, 5, 1, 2 }, new int[] { 4, 1, 2 }, true);
             //if (result == false) break;
 
-            result = TestCase(new int[] { 3, 4, 5, 1, 2, int.MinValue, int.MinValue, int.MinValue, int.MinValue, 0 }, new int[] { 4, 1, 2 }, false);
+            //result = TestCase(new int[] { 3, 4, 5, 1, 2, int.MinValue, int.MinValue, int.MinValue, int.MinValue, 0 }, new int[] { 4, 1, 2 }, false);
+            //if (result == false) break;
+
+            result = TestCase(new int[] { 10, 5, int.MinValue, 4 }, new int[] { 10, 4, int.MinValue, int.MinValue, 5 }, false);
             if (result == false) break;
 
             Console.WriteLine("ALL TESTS PASS");
