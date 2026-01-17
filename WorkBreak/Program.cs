@@ -1,29 +1,72 @@
 ﻿// 139. Word Break
+using System.Collections.Generic;
+
 public class Solution
 {
     public bool WordBreak(string s, IList<string> wordDict)
     {
-        Stack<(string, int)> currentWords = new Stack<(string, int)>();
+        Dictionary<int, bool> curPos = new Dictionary<int, bool>();
 
         foreach (string word in wordDict)
         {
             if (s.StartsWith(word))
-                currentWords.Push((word, word.Length));
+                curPos.Add(word.Length, false);
         }
 
-        while (currentWords.Count > 0)
+        while (curPos.ContainsValue(false))
         {
-            (string w, int pos) = currentWords.Pop();
+            // Find first unvisited position
+            int pos = 0;
+            foreach (var kvp in curPos)
+            {
+                if (kvp.Value == false)
+                {
+                    pos = kvp.Key;
+                    curPos[pos] = true;
+                    break;
+                }
+            }
+
             if (pos == s.Length)
                 return true;
 
             foreach (string word in wordDict)
             {
                 if (pos < s.Length && s.Substring(pos).StartsWith(word))
-                    currentWords.Push((word, pos + word.Length));
+                {
+                    if (curPos.ContainsKey(pos + word.Length) == false)
+                        curPos[pos + word.Length] = false;
+                }
             }
         }
         return false;
+
+#if false   // Time Limit Exceeded
+        Stack<int> currentLegth = new Stack<int>();
+
+        foreach (string word in wordDict)
+        {
+            if (s.StartsWith(word))
+                currentLegth.Push(word.Length);
+        }
+
+        while (currentLegth.Count > 0)
+        {
+            int pos = currentLegth.Pop();
+            if (pos == s.Length)
+                return true;
+
+            foreach (string word in wordDict)
+            {
+                if (pos < s.Length && s.Substring(pos).StartsWith(word))
+                {
+                    if (currentLegth.Contains(pos + word.Length) == false)
+                        currentLegth.Push(pos + word.Length);
+                }
+            }
+        }
+        return false;
+#endif
     }
 }
 
@@ -42,7 +85,7 @@ class Program
         while (true)
         {
             // Time Limit Exceeded
-            result = TestCase("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", 
+            result = TestCase("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
                 new List<string> { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" }, false);
             if (result == false) break;
 

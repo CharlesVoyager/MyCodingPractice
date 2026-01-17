@@ -44,52 +44,15 @@ public class H2O
 
 class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main()
     {
-        var service = new H2O();
+        Dictionary<int, bool> curPos = new Dictionary<int, bool>();
 
-        Task[] tasks = new Task[6];
+        curPos[0] = false;
+        curPos[1] = true;
 
-        tasks[0] = Task.Run(() =>
-        {
-            service.Oxygen(() => System.Diagnostics.Trace.WriteLine("O"));
-            Console.Write("O");
-        });
+        curPos[0] = true;
 
-        tasks[1] = Task.Run(() =>
-        {
-            service.Oxygen(() => System.Diagnostics.Trace.WriteLine("O"));
-            Console.Write("O");
-        });
-
-        tasks[2] = Task.Run(() =>
-        {
-            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
-            Console.Write("H");
-        });
-
-
-        tasks[3] = Task.Run(() =>
-        {
-            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
-            Console.Write("H");
-        });
-
-        tasks[4] = Task.Run(() =>
-        {
-            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
-            Console.Write("H");
-        });
-
-        tasks[5] = Task.Run(() =>
-        {
-            service.Hydrogen(() => System.Diagnostics.Trace.WriteLine("H"));
-            Console.Write("H");
-        });
-
-
-        // Wait for both threads to finish their work
-        await Task.WhenAll(tasks);
 
         Console.WriteLine("\n\nExecution finished successfully.");
     }
