@@ -9,29 +9,9 @@ public class Solution
             trie.Insert(i.ToString());
 
         List<int> output = new List<int>();
-        DeepFirstSearch(trie.root, "", output);
+        trie.GetAllNumbers(output);
 
         return output;
-    }
-
-    void DeepFirstSearch(TrieNode node, string num, List<int> output)
-    {
-        if (node == null)
-            return;
-
-        if (node.IsEnd)
-            output.Add(Convert.ToInt32(num));
-
-        DeepFirstSearch(node.Get('0'), num + "0", output);
-        DeepFirstSearch(node.Get('1'), num + "1", output);
-        DeepFirstSearch(node.Get('2'), num + "2", output);
-        DeepFirstSearch(node.Get('3'), num + "3", output);
-        DeepFirstSearch(node.Get('4'), num + "4", output);
-        DeepFirstSearch(node.Get('5'), num + "5", output);
-        DeepFirstSearch(node.Get('6'), num + "6", output);
-        DeepFirstSearch(node.Get('7'), num + "7", output);
-        DeepFirstSearch(node.Get('8'), num + "8", output);
-        DeepFirstSearch(node.Get('9'), num + "9", output);
     }
 }
 
@@ -97,6 +77,31 @@ public class Trie
                 return false;
         }
         return true;
+    }
+
+    public void GetAllNumbers(List<int> output)
+    {
+        DeepFirstSearch(root, "", output);
+    }
+
+    void DeepFirstSearch(TrieNode node, string num, List<int> output)
+    {
+        if (node == null)
+            return;
+
+        if (node.IsEnd)
+            output.Add(Convert.ToInt32(num));
+
+        DeepFirstSearch(node.Get('0'), num + "0", output);
+        DeepFirstSearch(node.Get('1'), num + "1", output);
+        DeepFirstSearch(node.Get('2'), num + "2", output);
+        DeepFirstSearch(node.Get('3'), num + "3", output);
+        DeepFirstSearch(node.Get('4'), num + "4", output);
+        DeepFirstSearch(node.Get('5'), num + "5", output);
+        DeepFirstSearch(node.Get('6'), num + "6", output);
+        DeepFirstSearch(node.Get('7'), num + "7", output);
+        DeepFirstSearch(node.Get('8'), num + "8", output);
+        DeepFirstSearch(node.Get('9'), num + "9", output);
     }
 }
 
