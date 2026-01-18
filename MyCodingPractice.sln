@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargestMagicSquare", "Large
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LexicographicalNumbers", "LexicographicalNumbers\LexicographicalNumbers.csproj", "{588BA6E2-C36F-4FA5-8566-8C8386E55751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceWords", "ReplaceWords\ReplaceWords.csproj", "{491750EE-8323-4DC0-A91F-FC0E47541A89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -517,6 +519,18 @@ Global
 		{588BA6E2-C36F-4FA5-8566-8C8386E55751}.Release|x64.Build.0 = Release|Any CPU
 		{588BA6E2-C36F-4FA5-8566-8C8386E55751}.Release|x86.ActiveCfg = Release|Any CPU
 		{588BA6E2-C36F-4FA5-8566-8C8386E55751}.Release|x86.Build.0 = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|x64.Build.0 = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Debug|x86.Build.0 = Debug|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|x64.ActiveCfg = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|x64.Build.0 = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|x86.ActiveCfg = Release|Any CPU
+		{491750EE-8323-4DC0-A91F-FC0E47541A89}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
