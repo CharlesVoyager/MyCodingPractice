@@ -115,12 +115,9 @@ class Program
         Console.WriteLine(solution.ReplaceWords(dictionary1, sentence1));
         // Output: "the cat was rat by the bat"
 
-#if true
-        // Output: "the cat was rat by the bat"
         IList<string> dictionary2 = new List<string>() { "a", "b", "c" };
         string sentence2 = "aadsfasf absbs bbab cadsfafs";
         Console.WriteLine(solution.ReplaceWords(dictionary2, sentence2));
         // Output: "a a b c"
-#endif
     }
 }
