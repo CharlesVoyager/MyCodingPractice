@@ -6,13 +6,10 @@ public class Solution
 
     public int LargestMagicSquare(int[][] grid)
     {
-
         rowLength = grid.Length;
         colLength = grid[0].Length;
         int curMaxSquareLength = 1;
 
-        //curMaxSquareLength = FindLargestMagicSquare(1, 1, grid);
-#if true
         for (int r = 0; r < rowLength - 1; r++)
         {
             for (int c = 0; c < colLength - 1; c++)
@@ -22,7 +19,6 @@ public class Solution
                     return curMaxSquareLength;
             }
         }
-#endif
         return curMaxSquareLength;
     }
 
@@ -30,7 +26,7 @@ public class Solution
     {
         int maxSquareLength = Math.Min(rowLength - rowIndex, colLength - colIndex);
 
-        for (int i = maxSquareLength; i >= 1; i--)
+        for (int i = maxSquareLength; i > 1; i--)
         {
             int lastRowIndex = rowIndex + i - 1;
             int lastColIndex = colIndex + i - 1;
@@ -115,7 +111,8 @@ class Program
         };
         Console.WriteLine(solution.LargestMagicSquare(grid1));  // Output: 3
 #endif
-#if false
+
+#if true
         int[][] grid2 = new int[][]
         {
             new int[] {5,1,3,1},
