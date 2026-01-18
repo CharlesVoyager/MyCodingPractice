@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubtreeOfAnotherTree", "Sub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkBreak", "WorkBreak\WorkBreak.csproj", "{EFE15338-E4C2-4D84-9272-1D18E2E76A37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LargestMagicSquare", "LargestMagicSquare\LargestMagicSquare.csproj", "{3983B45A-5E40-4058-85F3-AA69AA0A5243}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -489,6 +491,18 @@ Global
 		{EFE15338-E4C2-4D84-9272-1D18E2E76A37}.Release|x64.Build.0 = Release|Any CPU
 		{EFE15338-E4C2-4D84-9272-1D18E2E76A37}.Release|x86.ActiveCfg = Release|Any CPU
 		{EFE15338-E4C2-4D84-9272-1D18E2E76A37}.Release|x86.Build.0 = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|x64.Build.0 = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Debug|x86.Build.0 = Debug|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|x64.ActiveCfg = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|x64.Build.0 = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|x86.ActiveCfg = Release|Any CPU
+		{3983B45A-5E40-4058-85F3-AA69AA0A5243}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
