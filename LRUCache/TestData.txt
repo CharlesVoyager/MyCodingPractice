@@ -1,0 +1,124 @@
+Put(10,13)
+Put(3,17)
+Put(6,11)
+Put(10,5)
+Put(9,10)
+
+Get 13: -1
+
+Put(2,19)
+
+Get 2: 19
+Get 3: 17
+
+Put(5,25)
+
+Get 8: -1
+
+Put(9,22)
+Put(5,5)
+Put(1,30)
+
+Get 11: -1
+
+Put(9,12)
+
+Get 7: -1
+Get 5: 5
+Get 8: -1
+Get 9: 12
+
+Put(4,30)
+Put(9,3)
+
+Get 9: 3
+Get 10: 5
+Get 10: 5
+
+Put(6,14)
+Put(3,1)
+Get 3: 1
+Put(10,11)
+Get 8: -1
+Put(2,14)
+Get 1: 30
+Get 5: 5
+Get 4: 30
+Put(11,4)
+Put(12,24)
+Put(5,18)
+Get 13: -1
+Put(7,23)
+Get 8: -1
+Get 12: 24
+Put(3,27)
+Put(2,12)
+Get 5: 18
+Put(2,9)
+Put(13,4)
+Put(8,18)
+Put(1,7)
+Get 6: 14 | Expected: -1
+
+
+
+Put(9,29)
+Put(8,21)
+Get 5: 18
+Put(6,30)
+Put(1,12)
+Get 10: 11 | Expected: -1
+Put(4,15)
+Put(7,22)
+Put(11,26)
+Put(8,17)
+Put(9,29)
+Get 5: 18
+Put(3,4)
+Put(11,30)
+Get 12: 24 | Expected: -1
+Put(4,29)
+Get 3: 4
+Get 9: -1 | Expected: 29
+Get 6: 30
+Put(3,4)
+Get 1: 12
+Get 10: 11 | Expected: -1
+Put(3,29)
+Put(10,28)
+Put(1,20)
+Put(11,13)
+Get 3: 29
+Put(3,12)
+Put(3,8)
+Put(10,9)
+Put(3,26)
+Get 8: 17
+Get 7: 22
+Get 5: 18
+Put(13,17)
+Put(2,27)
+Put(11,15)
+Get 12: 24 | Expected: -1
+Put(9,19)
+Put(2,15)
+Put(3,16)
+Get 1: 20
+Put(12,17)
+Put(9,1)
+Put(6,19)
+Get 4: 29 | Expected: -1
+Get 5: 18
+Get 5: 18
+Put(8,1)
+Put(11,7)
+Put(5,2)
+Put(9,28)
+Get 1: 20
+Put(2,2)
+Put(7,4)
+Put(4,22)
+Put(7,24)
+Put(9,26)
+Put(13,28)
+Put(11,26)

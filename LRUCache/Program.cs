@@ -1,6 +1,6 @@
 ﻿// 146. LRU Cache
 
-// Wrong Answer
+// Time Limit Exceeded on large input - test case 22.
 public class LRUCache
 {
     int capacity = 0;
@@ -64,6 +64,17 @@ public class LRUCache
         }
     }
 
+    public string RecentlyUsedKeysToString()
+    {
+        string result = "";
+        ListNode node = recentlyUsedKeyHead;
+        while (node != null)
+        {
+            result += node.val + " ";
+            node = node.next;
+        }
+        return result;
+    }
 
     int RecentlyUsedKeysPeek()
     {
@@ -89,6 +100,9 @@ public class LRUCache
                     {
                         node.val = node.next.val;
                         node.next = node.next.next;
+
+                        if (node.next == null)
+                            recentlyUsedKeyTail = node;
                     }
                     else
                     {
@@ -100,7 +114,6 @@ public class LRUCache
             else
                 node = node.next;
         }
-
 
         ListNode nodeNew = new ListNode(val);
         if (recentlyUsedKeyHead == null && recentlyUsedKeyTail == null)
@@ -126,7 +139,7 @@ public class LRUCache
         return val;
     }
 
-    int RecentlyUsedKeysCount()
+    public int RecentlyUsedKeysCount()
     {
         int count = 0;
         ListNode node = recentlyUsedKeyHead;
@@ -163,6 +176,60 @@ class Program
 {
     static void Main()
     {
+
+        string[] inputOperator = new string[] { "LRUCache", "put", "put", "put", "put", "put", "get", "put", "get", "get", "put", "get", "put", "put", "put", "get", "put", "get", "get", "get", "get", "put", "put", "get", "get", "get", "put", "put", "get", "put", "get", "put", "get", "get", "get", "put", "put", "put", "get", "put", "get", "get", "put", "put", "get", "put", "put", "put", "put", "get", "put", "put", "get", "put", "put", "get", "put", "put", "put", "put", "put", "get", "put", "put", "get", "put", "get", "get", "get", "put", "get", "get", "put", "put", "put", "put", "get", "put", "put", "put", "put", "get", "get", "get", "put", "put", "put", "get", "put", "put", "put", "get", "put", "put", "put", "get", "get", "get", "put", "put", "put", "put", "get", "put", "put", "put", "put", "put", "put", "put" };
+        string tempInputVal = "[10], [10, 13], [3, 17], [6, 11], [10, 5], [9, 10], [13], [2, 19], [2], [3], [5, 25], [8], [9, 22], [5, 5], [1, 30], [11], [9, 12], [7], [5], [8], [9], [4, 30], [9, 3], [9], [10], [10], [6, 14], [3, 1], [3], [10, 11], [8], [2, 14], [1], [5], [4], [11, 4], [12, 24], [5, 18], [13], [7, 23], [8], [12], [3, 27], [2, 12], [5], [2, 9], [13, 4], [8, 18], [1, 7], [6], [9, 29], [8, 21], [5], [6, 30], [1, 12], [10], [4, 15], [7, 22], [11, 26], [8, 17], [9, 29], [5], [3, 4], [11, 30], [12], [4, 29], [3], [9], [6], [3, 4], [1], [10], [3, 29], [10, 28], [1, 20], [11, 13], [3], [3, 12], [3, 8], [10, 9], [3, 26], [8], [7], [5], [13, 17], [2, 27], [11, 15], [12], [9, 19], [2, 15], [3, 16], [1], [12, 17], [9, 1], [6, 19], [4], [5], [5], [8, 1], [11, 7], [5, 2], [9, 28], [1], [2, 2], [7, 4], [4, 22], [7, 24], [9, 26], [13, 28], [11, 26";
+        string tempExpected = "null,null,null,null,null,null,-1,null,19,17,null,-1,null,null,null,-1,null,-1,5,-1,12,null,null,3,5,5,null,null,1,null,-1,null,30,5,30,null,null,null,-1,null,-1,24,null,null,18,null,null,null,null,-1,null,null,18,null,null,-1,null,null,null,null,null,18,null,null,-1,null,4,29,30,null,12,-1,null,null,null,null,29,null,null,null,null,17,22,18,null,null,null,-1,null,null,null,20,null,null,null,-1,18,18,null,null,null,null,20,null,null,null,null,null,null,null";
+        string[] inputValue = tempInputVal.Replace("[","").Split("], ");
+        string[] expected = tempExpected.Split(",");
+
+        //    inputOperator[i], inputValue[i], expected[i]
+        List<(string, string, string)> inputs = new List<(string, string, string)>();
+        for (int i = 0; i < inputOperator.Length; i++)
+        {
+            inputs.Add((inputOperator[i], inputValue[i], expected[i]));
+        }
+
+        Console.WriteLine("LRU Cache Test");
+        LRUCache lRUCache = new LRUCache(10);
+
+        for (int i = 1; i < inputs.Count; i++)
+        {
+            var (operation, value, exp) = inputs[i];
+            if (operation == "put")
+            {
+                string[] vals = value.Split(", ");
+                int key = int.Parse(vals[0]);
+                int val = int.Parse(vals[1]);
+                lRUCache.Put(key, val);
+                Console.Write($"Put({key},{val})");
+                Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
+                Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
+                Console.WriteLine();
+            }
+            else if (operation == "get")
+            {
+                int key = int.Parse(value);
+                int result = lRUCache.Get(key);
+                if (result == Convert.ToInt32(exp))
+                {
+                    Console.Write($"Get {key}: {result}");
+                    Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
+                    Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.Write($"Get {key}: {result} | Expected: {exp}");
+                    Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
+                    Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
+                    Console.WriteLine();
+                }
+          
+            }
+        }
+
+#if false
         LRUCache lRUCache = new LRUCache(2);
         lRUCache.Put(1, 1); // cache is {1=1}
         Console.WriteLine("Put(1,1)");
@@ -183,5 +250,6 @@ class Program
         Console.WriteLine("1: " + lRUCache.Get(1));    // return -1 (not found)
         Console.WriteLine("3: " + lRUCache.Get(3));    // return 3
         Console.WriteLine("4: " + lRUCache.Get(4));    // return 4
+#endif
     }
 }
