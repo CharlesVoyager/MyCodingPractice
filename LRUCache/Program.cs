@@ -1,26 +1,22 @@
 ﻿// 146. LRU Cache
 
-// Time Limit Exceeded on large input - test case 22.
 public class LRUCache
 {
     int capacity = 0;
-    ListNode recentlyUsedKeyHead = null;
-    ListNode recentlyUsedKeyTail = null;
     Dictionary<int, int> cache = new Dictionary<int, int>();
-    int recentlyUsedKeysCount = 0;
+    OrderedUniqueContainer<int> recentlyUsedKeys = null;
 
     public LRUCache(int capacity)
     {
         this.capacity = capacity;
+        recentlyUsedKeys = new OrderedUniqueContainer<int>(capacity);
     }
 
     public int Get(int key)
     {
         if (cache.ContainsKey(key))
         {
-            RecentlyUsedKeysEnqueue(key);
-            if (RecentlyUsedKeysCount() > capacity)
-                RecentlyUsedKeysDequeue();
+            recentlyUsedKeys.Add(key);
             return cache[key];
         }
         else
@@ -29,31 +25,12 @@ public class LRUCache
 
     public void Put(int key, int value)
     {
-        if (cache.ContainsKey(key))
-        {
-            cache[key] = value;
-            RecentlyUsedKeysEnqueue(key);
-            if (RecentlyUsedKeysCount() > capacity)
-                RecentlyUsedKeysDequeue();
-        }
-        else
-        {
-            int leastRecentlyUsedKey;
-            if (RecentlyUsedKeysCount() < capacity)
-            {
-                RecentlyUsedKeysEnqueue(key);
-                leastRecentlyUsedKey = RecentlyUsedKeysPeek();
-            }
-            else
-            {
-                RecentlyUsedKeysEnqueue(key);
-                leastRecentlyUsedKey = RecentlyUsedKeysDequeue();
-            }
+        cache[key] = value;
 
-            cache[key] = value;
-            if (cache.Count > capacity)
-                cache.Remove(leastRecentlyUsedKey);
-        }
+        int leastRecentlyUsedKey= recentlyUsedKeys.Add(key);
+
+        if (cache.Count > capacity)
+            cache.Remove(leastRecentlyUsedKey);
     }
 
     public void DisplayCache()
@@ -68,104 +45,52 @@ public class LRUCache
     public string RecentlyUsedKeysToString()
     {
         string result = "";
-        ListNode node = recentlyUsedKeyHead;
-        while (node != null)
-        {
-            result += node.val + " ";
-            node = node.next;
-        }
+
         return result;
     }
-
-    int RecentlyUsedKeysPeek()
-    {
-        return recentlyUsedKeyHead.val;
-    }
-
-    void RecentlyUsedKeysEnqueue(int val)
-    {
-        // Remove the ListNode with value val.
-        ListNode node = recentlyUsedKeyHead;
-
-        while (node != null)
-        {
-            if (node.val == val)
-            {
-                if (node.next == null)  // It means last node. Dont need to process.
-                {
-                    return;
-                }
-                else
-                {
-                    node.val = node.next.val;
-                    node.next = node.next.next;
-
-                    if (node.next == null)
-                        recentlyUsedKeyTail = node;
-
-                    recentlyUsedKeysCount--;
-                    break;
-                }
-            }
-            else
-                node = node.next;
-        }
-
-        ListNode nodeNew = new ListNode(val);
-        if (recentlyUsedKeyHead == null && recentlyUsedKeyTail == null)
-        {
-            recentlyUsedKeyHead = nodeNew;
-            recentlyUsedKeyTail = nodeNew;
-            recentlyUsedKeysCount = 1;
-        }
-        else
-        {
-            recentlyUsedKeyTail.next = nodeNew;
-            recentlyUsedKeyTail = nodeNew;
-            recentlyUsedKeysCount++;
-        }
-    }
-
-    int RecentlyUsedKeysDequeue()
-    {
-        if (recentlyUsedKeyHead == null || recentlyUsedKeyTail == null)
-            return 0;
-
-        int val = recentlyUsedKeyHead.val;
-        ListNode node = recentlyUsedKeyHead.next;
-        recentlyUsedKeyHead = node;
-        recentlyUsedKeysCount--;
-        return val;
-    }
-
-    public int RecentlyUsedKeysCount()
-    {
-        return recentlyUsedKeysCount;
-#if false
-        int count = 0;
-        ListNode node = recentlyUsedKeyHead;
-        while (node != null)
-        {
-            count++;
-            node = node.next;
-        }
-        return count;
-#endif
-    }
 }
 
-//Definition for singly-linked list.
-public class ListNode
+public class OrderedUniqueContainer<T>
 {
-    public int val;
-    public ListNode next;
-    public ListNode(int val = 0, ListNode next = null)
-    {
-        this.val = val;
-        this.next = next;
-    }
-}
+    private readonly int _capacity;
+    private readonly LinkedList<T> _list;
+    private readonly Dictionary<T, LinkedListNode<T>> _map;
 
+    public OrderedUniqueContainer(int capacity = 3000)
+    {
+        _capacity = capacity;
+        _list = new LinkedList<T>();
+        _map = new Dictionary<T, LinkedListNode<T>>();
+    }
+
+    public T Add(T item)
+    {
+        T first;
+
+        // If item already exists → remove it
+        if (_map.TryGetValue(item, out var existingNode))
+        {
+            _list.Remove(existingNode);
+        }
+
+        // Add to the end
+        var newNode = _list.AddLast(item);
+        _map[item] = newNode;
+
+        first = _list.First!.Value;
+
+        // If capacity exceeded → remove oldest
+        if (_list.Count > _capacity)
+        {
+            var oldestNode = _list.First!;
+            _map.Remove(oldestNode.Value);
+            _list.RemoveFirst();
+        }
+        return first;
+    }
+
+    public IReadOnlyCollection<T> Items => _list;
+}
 
 /**
  * Your LRUCache object will be instantiated and called as such:
@@ -195,6 +120,7 @@ class Program
         Console.WriteLine("LRU Cache Test");
         LRUCache lRUCache = new LRUCache(10);
 
+        bool testResultPass = true;
         for (int i = 1; i < inputs.Count; i++)
         {
             var (operation, value, exp) = inputs[i];
@@ -206,7 +132,6 @@ class Program
                 lRUCache.Put(key, val);
                 Console.Write($"Put({key},{val})");
                 Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
-                Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
                 Console.WriteLine();
             }
             else if (operation == "get")
@@ -217,19 +142,19 @@ class Program
                 {
                     Console.Write($"Get {key}: {result}");
                     Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
-                    Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
                     Console.WriteLine();
                 }
                 else
                 {
+                    testResultPass = false;
                     Console.Write($"Get {key}: {result} | Expected: {exp}");
                     Console.Write(" => " + lRUCache.RecentlyUsedKeysToString());
-                    Console.Write(" => Count: " + lRUCache.RecentlyUsedKeysCount().ToString());
                     Console.WriteLine();
                 }
           
             }
         }
+        Console.WriteLine("Test Result: " + (testResultPass ? "Pass" : "Fail"));
 
 #if false
         LRUCache lRUCache = new LRUCache(2);
