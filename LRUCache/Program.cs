@@ -7,6 +7,7 @@ public class LRUCache
     ListNode recentlyUsedKeyHead = null;
     ListNode recentlyUsedKeyTail = null;
     Dictionary<int, int> cache = new Dictionary<int, int>();
+    int recentlyUsedKeysCount = 0;
 
     public LRUCache(int capacity)
     {
@@ -96,18 +97,13 @@ public class LRUCache
                 }
                 else
                 {
-                    if (node != recentlyUsedKeyHead)
-                    {
-                        node.val = node.next.val;
-                        node.next = node.next.next;
+                    node.val = node.next.val;
+                    node.next = node.next.next;
 
-                        if (node.next == null)
-                            recentlyUsedKeyTail = node;
-                    }
-                    else
-                    {
-                        recentlyUsedKeyHead = recentlyUsedKeyHead.next;
-                    }
+                    if (node.next == null)
+                        recentlyUsedKeyTail = node;
+
+                    recentlyUsedKeysCount--;
                     break;
                 }
             }
@@ -120,11 +116,13 @@ public class LRUCache
         {
             recentlyUsedKeyHead = nodeNew;
             recentlyUsedKeyTail = nodeNew;
+            recentlyUsedKeysCount = 1;
         }
         else
         {
             recentlyUsedKeyTail.next = nodeNew;
             recentlyUsedKeyTail = nodeNew;
+            recentlyUsedKeysCount++;
         }
     }
 
@@ -136,11 +134,14 @@ public class LRUCache
         int val = recentlyUsedKeyHead.val;
         ListNode node = recentlyUsedKeyHead.next;
         recentlyUsedKeyHead = node;
+        recentlyUsedKeysCount--;
         return val;
     }
 
     public int RecentlyUsedKeysCount()
     {
+        return recentlyUsedKeysCount;
+#if false
         int count = 0;
         ListNode node = recentlyUsedKeyHead;
         while (node != null)
@@ -149,6 +150,7 @@ public class LRUCache
             node = node.next;
         }
         return count;
+#endif
     }
 }
 
